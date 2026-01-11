@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/nohemi');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 45%;
+
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(211 100% 50%) 0%, hsl(211 100% 60%) 50%, hsl(211 100% 70%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(200 90% 90%) 0%, hsl(200 70% 85%) 50%, hsl(210 30% 96%) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(211 100% 45%) 0%, hsl(211 100% 55%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(240 5% 98%) 100%);
+
+    --shadow-sm: 0 1px 2px 0 hsl(240 10% 10% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(240 10% 10% / 0.1), 0 2px 4px -2px hsl(240 10% 10% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(240 10% 10% / 0.1), 0 4px 6px -4px hsl(240 10% 10% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(240 10% 10% / 0.1), 0 8px 10px -6px hsl(240 10% 10% / 0.1);
+    --shadow-glow: 0 0 40px hsl(211 100% 50% / 0.3);
+
+    --font-heading: 'Sora', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 211 100% 50%;
+  }
+
+  .dark {
+    --background: 240 10% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 5% 18%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 211 100% 50%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 211 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 211 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-nohemi {
+    font-family: 'Nohemi', sans-serif;
+  }
+
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-gradient-text {
+    background: linear-gradient(to right, #0066cc, #00ccff, #0066cc);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 3s linear infinite;
+  }
+
+  @keyframes gradient-move {
+    0% {
+      background-position: 0% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .7;
+  }
+}
+
+@layer utilities {
+  .animate-border-flow {
+    animation: border-flow 3s linear infinite;
+  }
+
+  .animate-mist-flow {
+    animation: mist-flow 10s linear infinite;
+  }
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes mist-flow {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+    opacity: 0.5;
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes vertical-steps {
+
+  0%,
+  20% {
+    transform: translateY(0);
+  }
+
+  25%,
+  45% {
+    transform: translateY(-1.2em);
+  }
+
+  50%,
+  70% {
+    transform: translateY(-2.4em);
+  }
+
+  75%,
+  95% {
+    transform: translateY(-3.6em);
+  }
+
+  100% {
+    transform: translateY(-4.8em);
+  }
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-25px) translateY(-10px);
+  }
+}
+
+@keyframes wave-slow {
+
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+
+  50% {
+    transform: translateX(25px) translateY(10px);
+  }
+}
+
+.animate-wave {
+  animation: wave 10s ease-in-out infinite;
+}
+
+.animate-wave-slow {
+  animation: wave-slow 15s ease-in-out infinite;
+}
