@@ -44,3 +44,6 @@ next-env.d.ts
 *.sln
 *.sw?
 
+
+# Local Netlify folder
+.netlify

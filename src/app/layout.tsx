@@ -6,12 +6,12 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ExplainOLP",
-  description: "ExplainOLP - Natural Language Processing Application",
-  authors: [{ name: "ExplainOLP Team" }],
+  title: "jetflix.ai",
+  description: "jetflix.ai - Your AI Service Platform",
+  authors: [{ name: "jetflix.ai Team" }],
   openGraph: {
-    title: "ExplainOLP",
-    description: "ExplainOLP - Natural Language Processing Application",
+    title: "jetflix.ai",
+    description: "jetflix.ai - Your AI Service Platform",
     type: "website",
   },
   twitter: {

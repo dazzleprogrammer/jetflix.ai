@@ -77,17 +77,17 @@ export default function AIProductVideos() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
                     {/* Premium Necklace Showcase with Video */}
-                    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 shadow-xl">
+                    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-transparent border border-white/20 shadow-xl">
                         <video
                             ref={video1Ref}
-                            src="https://v1.pinimg.com/videos/mc/720p/ab/9e/14/ab9e149e33ba0a5f7e050a8e7dce766b.mp4"
+                            src="https://cdn.pixabay.com/video/2024/05/03/210307_large.mp4"
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             autoPlay
                             muted
                             loop
                             playsInline
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                             <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">JEWELLERY</p>
                             <h3 className="text-xl font-bold">Premium Necklace Showcase</h3>
@@ -98,19 +98,19 @@ export default function AIProductVideos() {
                     </div>
 
                     {/* FMCG Products - Dynamic Product Reveal with Video */}
-                    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 shadow-xl">
+                    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-transparent border border-white/20 shadow-xl">
                         <video
                             ref={video2Ref}
-                            src="https://v1.pinimg.com/videos/mc/720p/5c/22/b0/5c22b0fe6c34b6b1e3b8c4e5d6f7a8b9.mp4"
+                            src="https://cdn.pixabay.com/video/2023/10/16/185261-874987042_large.mp4"
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             autoPlay
                             muted
                             loop
                             playsInline
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">FMCG</p>
+                            <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">FASHION</p>
                             <h3 className="text-xl font-bold">Dynamic Product Reveal</h3>
                         </div>
                         <div className="absolute top-4 right-4 p-2 rounded-full bg-white/10 backdrop-blur-md">
