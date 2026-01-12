@@ -1,12 +1,11 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { MouseTrace } from "@/components/ui/mouse-trace";
 import HeroSection from "@/components/HeroSection";
+import StorySection from "@/components/StorySection";
 import ServicesOverview from "@/components/ServicesOverview";
-import AIPhoneAgents from "@/components/AIPhoneAgents";
-import AIWhatsAppAgents from "@/components/AIWhatsAppAgents";
-import AIHumanClones from "@/components/AIHumanClones";
-import AIProductVideos from "@/components/AIProductVideos";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -32,11 +31,8 @@ export default function Home() {
       <Navbar />
       <main className="relative z-10">
         <HeroSection />
+        <StorySection />
         <ServicesOverview />
-        <AIPhoneAgents />
-        <AIWhatsAppAgents />
-        <AIHumanClones />
-        <AIProductVideos />
         <CTASection />
       </main>
       <Footer />

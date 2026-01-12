@@ -13,6 +13,7 @@ interface PricingFlowProps {
     volumeLabel: string;
     volumeOptions: string[];
     showVoiceType?: boolean;
+    trigger?: React.ReactNode;
 }
 
 type Step = "idle" | "form" | "brochure" | "interested";
@@ -22,6 +23,7 @@ export default function PricingFlow({
     volumeLabel,
     volumeOptions,
     showVoiceType = false,
+    trigger,
 }: PricingFlowProps) {
     const [step, setStep] = useState<Step>("idle");
     const [isLoading, setIsLoading] = useState(false);
@@ -58,16 +60,18 @@ export default function PricingFlow({
     };
 
     return (
-        <div className="w-full max-w-md mx-auto">
+        <div className="w-full">
             <Dialog open={step !== "idle"} onOpenChange={(open) => !open && resetFlow()}>
                 <DialogTrigger asChild>
-                    <Button
-                        size="lg"
-                        className="w-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-                        onClick={() => setStep("form")}
-                    >
-                        Request Pricing
-                    </Button>
+                    {trigger ? trigger : (
+                        <Button
+                            size="lg"
+                            className="w-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                            onClick={() => setStep("form")}
+                        >
+                            Request Pricing
+                        </Button>
+                    )}
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[500px] max-h-[85vh] overflow-y-auto p-0">
                     <DialogHeader className="px-6 pt-6 pb-4">

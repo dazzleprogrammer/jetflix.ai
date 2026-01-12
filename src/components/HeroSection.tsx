@@ -28,7 +28,7 @@ const HeroSection = () => {
 
             {/* Headline */}
             <h1 className="font-nohemi font-normal text-4xl sm:text-5xl md:text-[56px] lg:text-[72px] leading-[1.1] text-foreground mb-6 animate-slide-up hover:scale-[1.02] transition-transform duration-500 origin-left">
-              Deploy AI
+              We Build Custom AI
               <br />
               <span className="animate-gradient-text whitespace-nowrap">Employees & Clones</span>
             </h1>
@@ -48,15 +48,10 @@ const HeroSection = () => {
             >
               <Button variant="hero" size="xl" className="group relative overflow-hidden transition-all hover:scale-105 hover:shadow-glow hover:ring-2 hover:ring-primary/50">
                 <span className="relative z-10 flex items-center gap-2">
-                  Start Free Trial
+                  Book a Demo
                   <Sparkles className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700" />
-              </Button>
-              <Button variant="hero-outline" size="xl" className="group relative overflow-hidden transition-all hover:scale-105 hover:bg-primary/5 hover:border-primary/50">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-purple-500 to-blue-500 transition-opacity" />
-                <Play className="w-5 h-5 group-hover:fill-primary transition-colors relative z-10" />
-                <span className="relative z-10">Book a Demo</span>
               </Button>
             </div>
           </div>

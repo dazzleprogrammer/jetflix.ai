@@ -3,6 +3,7 @@
 import { Phone, MessageSquare, User, Video, Tv, Code, Sparkles, ArrowRight, Brain, Zap, Bot, Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import PricingFlow from "./PricingFlow";
 
 export default function ServicesOverview() {
     const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
@@ -34,7 +35,13 @@ export default function ServicesOverview() {
             borderColor: "border-blue-500/20",
             iconBg: "from-blue-100 to-indigo-100",
             iconColor: "text-blue-600",
-            link: "#phone-agents"
+            link: "/phone-agents",
+            image: "https://i.pinimg.com/736x/21/2a/fc/212afce47eebb7d34ae69a480263e70f.jpg",
+            pricingProps: {
+                volumeLabel: "Calls/Month",
+                volumeOptions: ["1,000", "5,000", "10,000", "50,000+"],
+                showVoiceType: true
+            }
         },
         {
             icon: MessageSquare,
@@ -52,7 +59,13 @@ export default function ServicesOverview() {
             borderColor: "border-emerald-500/20",
             iconBg: "from-emerald-100 to-teal-100",
             iconColor: "text-emerald-600",
-            link: "#whatsapp-agents"
+            link: "/whatsapp-agents",
+            image: "https://i.pinimg.com/1200x/42/49/34/424934965bff64129d45456311b6bc95.jpg",
+            pricingProps: {
+                volumeLabel: "Messages/Month",
+                volumeOptions: ["5,000", "25,000", "50,000", "100,000+"],
+                showVoiceType: false
+            }
         },
         {
             icon: User,
@@ -70,7 +83,13 @@ export default function ServicesOverview() {
             borderColor: "border-purple-500/20",
             iconBg: "from-purple-100 to-violet-100",
             iconColor: "text-purple-600",
-            link: "#human-clones"
+            link: "/human-clones",
+            image: "https://i.pinimg.com/1200x/c4/fa/ab/c4faab263802b0780ce242b0147a5a4d.jpg",
+            pricingProps: {
+                volumeLabel: "Videos/Month",
+                volumeOptions: ["5", "10", "20", "50+"],
+                showVoiceType: true
+            }
         },
         {
             icon: Video,
@@ -88,44 +107,15 @@ export default function ServicesOverview() {
             borderColor: "border-pink-500/20",
             iconBg: "from-pink-100 to-fuchsia-100",
             iconColor: "text-pink-600",
-            link: "#product-videos"
+            link: "/product-videos",
+            image: "https://i.pinimg.com/736x/c8/a7/de/c8a7de18b04321ad1d75c14fb4386adc.jpg",
+            pricingProps: {
+                volumeLabel: "Videos/project",
+                volumeOptions: ["1-5", "5-20", "20-50", "50+"],
+                showVoiceType: false
+            }
         },
-        {
-            icon: Tv,
-            title: "AI Brand Ad Videos",
-            description: "High quality videos for TV Commercials using AI without camera, studio, or human crew.",
-            features: [
-                "TV Commercial Quality",
-                "No Camera/Studio Needed",
-                "Shoes High Quality Brand Ads",
-                "Earbuds TV Commercials",
-                "Turn Audio/Photo to Video",
-                "Professional Grade Output"
-            ],
-            gradient: "from-orange-500/10 via-amber-400/5 to-transparent",
-            borderColor: "border-orange-500/20",
-            iconBg: "from-orange-100 to-amber-100",
-            iconColor: "text-orange-600",
-            link: "#brand-videos"
-        },
-        {
-            icon: Code,
-            title: "AI Consulting",
-            description: "Expert consulting for AI integration and cloud architecture solutions.",
-            features: [
-                "Startup Consulting - Idea to Production",
-                "AWS Cloud & Database Architecture",
-                "AI LLM Integration",
-                "RAG Implementation (In-house ChatGPT)",
-                "Large Scale Software Apps",
-                "Custom AI Solutions"
-            ],
-            gradient: "from-indigo-500/10 via-blue-400/5 to-transparent",
-            borderColor: "border-indigo-500/20",
-            iconBg: "from-indigo-100 to-blue-100",
-            iconColor: "text-indigo-600",
-            link: "#consulting"
-        }
+
     ];
 
     return (
@@ -163,7 +153,7 @@ export default function ServicesOverview() {
                 </div>
 
                 {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-6 max-w-7xl mx-auto">
                     {services.map((service, idx) => {
                         const isExpanded = expandedCards.has(idx);
 
@@ -173,10 +163,22 @@ export default function ServicesOverview() {
                                 className="group relative animate-slide-up"
                                 style={{ animationDelay: `${idx * 0.1}s` }}
                             >
-                                {/* Glassmorphism Card - Fixed Height */}
-                                <div className={`relative p-5 md:p-6 rounded-2xl bg-white/60 backdrop-blur-2xl border-2 ${service.borderColor} hover:border-opacity-60 transition-all duration-500 flex flex-col overflow-hidden group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-purple-300/40 h-auto md:h-[520px]`}>
+                                {/* Glassmorphism Card */}
+                                <div className={`relative p-5 md:p-6 rounded-2xl bg-white/90 backdrop-blur-2xl border-2 ${service.borderColor} hover:border-opacity-60 transition-all duration-500 flex flex-col overflow-hidden group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-purple-300/40 h-auto`}>
+                                    {/* Background Image - Slide Down Curtain Animation */}
+                                    <div className={`absolute inset-0 z-0 transition-transform duration-700 ease-out origin-top ${isExpanded ? 'translate-y-0' : '-translate-y-full group-hover:translate-y-0'}`}>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                        {/* Lighter Gradient Overlay for text readability but clear image */}
+                                        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/60 to-white/95" />
+                                    </div>
+
                                     {/* Background gradient overlay */}
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10`} />
 
                                     {/* Content */}
                                     <div className="relative z-10">
@@ -229,7 +231,7 @@ export default function ServicesOverview() {
                                             </div>
 
                                             {/* Explore Button */}
-                                            <a href={service.link} className="block">
+                                            <a href={service.link} className="block w-full">
                                                 <Button
                                                     variant="outline"
                                                     className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 hover:from-blue-600 hover:via-purple-600 hover:to-indigo-600 border-0 text-white group/btn transition-all duration-300 hover:shadow-lg hover:shadow-purple-300/50 text-sm md:text-base py-2 md:py-2.5 animate-gradient-x"
