@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles } from "lucide-react";
+import { Play, Sparkles, MessageSquare } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -10,8 +10,8 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-sky-300/30 blur-[80px] rounded-full animate-float" />
       <div className="absolute top-40 left-[-100px] w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-blue-400/20 blur-[60px] rounded-full animate-float" style={{ animationDelay: '1s' }} />
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+      {/* Bottom fade for smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/50 to-transparent z-10 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
@@ -19,40 +19,75 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="flex-1 text-left">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-foreground">
-                AI Agents & Digital Twins
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/5 border border-blue-500/10 mb-6 animate-fade-in backdrop-blur-sm">
+              <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+              <span className="text-[12px] font-bold uppercase tracking-widest text-blue-600/80">
+                AI Expert for Business Growth 🤖
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-nohemi font-normal text-4xl sm:text-5xl md:text-[56px] lg:text-[72px] leading-[1.1] text-foreground mb-6 animate-slide-up hover:scale-[1.02] transition-transform duration-500 origin-left">
-              We Build Custom AI
-              <br />
-              <span className="animate-gradient-text whitespace-nowrap">Employees & Clones</span>
-            </h1>
+            <div className="flex items-center gap-4 mb-6 group/title">
+              <h1 className="font-nohemi font-bold text-4xl md:text-6xl lg:text-7xl leading-tight text-slate-900 animate-slide-up transition-all duration-500">
+                Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Jetflix!</span>
+              </h1>
 
-            {/* Subtitle */}
-            <p
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-slide-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              Transform your business with Phone Agents, WhatsApp Bots, and Hyper-realistic Human Clones for video production.
-            </p>
+            </div>
+
+            {/* Subtitle / Intro */}
+            <div className="space-y-4 mb-10 animate-slide-up" style={{ animationDelay: "0.1s" }}>
+              <p className="text-lg md:text-2xl font-medium text-slate-800 leading-tight max-w-xl">
+                We help brands architect revenue engines, scaling <span className="text-blue-600 font-bold underline decoration-blue-200 decoration-4 underline-offset-4">faster & smarter</span> with custom AI.
+              </p>
+              <p className="text-sm md:text-base text-slate-500 leading-relaxed max-w-lg">
+                Specialized AI solutions designed for companies that need to scale rapidly without sacrificing quality or brand authenticity.
+              </p>
+            </div>
+
+            {/* What Makes Us Different Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.15s" }}>
+              {[
+                { text: "Launch in 5 days", sub: "Rapid Deployment", color: "blue" },
+                { text: "1L+ AI Calls/Day", sub: "Massive Scale", color: "indigo" },
+                { text: "AI Twin in 24h", sub: "Digital Clones", color: "purple" },
+                { text: "Ads in a week", sub: "Production Speed", color: "pink" },
+                { text: "Expert AI Team", sub: "TheIndianTechGal", color: "sky" }
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/50 hover:border-blue-300 hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.15)] hover:-translate-y-1.5 transition-all duration-500 group/card cursor-default overflow-hidden relative">
+                  {/* Subtle Background Shimmer on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/5 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 flex items-center justify-center shrink-0 border border-${item.color}-200 group-hover/card:scale-110 group-hover/card:rotate-6 transition-all duration-500 shadow-sm`}>
+                    <Sparkles className={`w-5 h-5 text-${item.color}-600 group-hover/card:animate-pulse`} />
+                  </div>
+                  <div className="relative z-10">
+                    <p className="text-sm font-bold text-slate-900 leading-tight group-hover/card:text-blue-600 transition-colors duration-300">{item.text}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-slate-400 font-bold whitespace-nowrap group-hover/card:text-blue-400 transition-colors duration-300">{item.sub}</p>
+                  </div>
+
+                  {/* Highlight Corner */}
+                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-blue-500/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                </div>
+              ))}
+            </div>
 
             {/* CTAs */}
             <div
-              className="flex flex-col sm:flex-row gap-4 justify-start mb-16 animate-slide-up"
+              className="flex flex-col sm:flex-row gap-4 justify-start mb-8 animate-slide-up"
               style={{ animationDelay: "0.2s" }}
             >
-              <Button variant="hero" size="xl" className="group relative overflow-hidden transition-all hover:scale-105 hover:shadow-glow hover:ring-2 hover:ring-primary/50">
+              {/* <Button
+                size="xl"
+                className="group relative overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] bg-gradient-to-r from-green-600 to-emerald-400 text-white border-none animate-bounce-subtle"
+                onClick={() => window.open('https://wa.me/919833219195?text=hey%20i%20want%20to%20know%20more%20about%20your%20services!', '_blank')}
+              >
                 <span className="relative z-10 flex items-center gap-2">
-                  Book a Demo
+                  <MessageSquare className="w-5 h-5 fill-white/20" />
+                  Chat on WhatsApp
                   <Sparkles className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700" />
-              </Button>
+              </Button> */}
             </div>
           </div>
 

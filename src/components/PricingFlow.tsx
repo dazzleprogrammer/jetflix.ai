@@ -1,18 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, ArrowRight } from "lucide-react";
 
 interface PricingFlowProps {
     serviceName: string;
     volumeLabel: string;
     volumeOptions: string[];
     showVoiceType?: boolean;
+    showTeamSize?: boolean;
+    setupFee?: string;
+    redirectPath?: string;
     trigger?: React.ReactNode;
 }
 
@@ -23,8 +27,12 @@ export default function PricingFlow({
     volumeLabel,
     volumeOptions,
     showVoiceType = false,
+    showTeamSize = true,
+    setupFee = "INR 25,000",
+    redirectPath,
     trigger,
 }: PricingFlowProps) {
+    const router = useRouter();
     const [step, setStep] = useState<Step>("idle");
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -36,7 +44,7 @@ export default function PricingFlow({
         useCase: "",
         languages: "",
         voiceTypes: "",
-        teamSize: "<15",
+        teamSize: "Less than 15",
         volume: volumeOptions[0],
     });
 
@@ -56,7 +64,6 @@ export default function PricingFlow({
 
     const resetFlow = () => {
         setStep("idle");
-        // Reset form data optionally
     };
 
     return (
@@ -66,10 +73,17 @@ export default function PricingFlow({
                     {trigger ? trigger : (
                         <Button
                             size="lg"
-                            className="w-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-                            onClick={() => setStep("form")}
+                            className="w-full text-lg font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 hover:from-slate-800 hover:via-blue-800 hover:to-slate-800 text-white shadow-[0_10px_30px_-5px_rgba(30,58,138,0.3)] hover:shadow-[0_15px_40px_-5px_rgba(30,58,138,0.5)] transition-all duration-500 group/btn rounded-[2rem] h-14 border border-white/10"
+                            onClick={() => {
+                                if (redirectPath) {
+                                    router.push(redirectPath);
+                                } else {
+                                    setStep("form");
+                                }
+                            }}
                         >
-                            Request Pricing
+                            <span className="relative z-10">Explore</span>
+                            <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1.5 transition-transform duration-300 relative z-10" />
                         </Button>
                     )}
                 </DialogTrigger>
@@ -144,49 +158,6 @@ export default function PricingFlow({
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="teamSize" className="text-xs font-medium text-muted-foreground">Team Size</Label>
-                                    <Select
-                                        value={formData.teamSize}
-                                        onValueChange={(val) => setFormData({ ...formData, teamSize: val })}
-                                    >
-                                        <SelectTrigger className="h-9 text-sm">
-                                            <SelectValue placeholder="Select size" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="<15">{'<15'}</SelectItem>
-                                            <SelectItem value="15-50">15-50</SelectItem>
-                                            <SelectItem value="50-100">50-100</SelectItem>
-                                            <SelectItem value="100+">100+</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-
-                            <div className="space-y-1.5">
-                                <Label htmlFor="useCase" className="text-xs font-medium text-muted-foreground">Use Case</Label>
-                                <Input
-                                    id="useCase"
-                                    placeholder="e.g. Appointment Booking, Lead Qual..."
-                                    required
-                                    className="h-9 text-sm"
-                                    value={formData.useCase}
-                                    onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-                                />
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div className="space-y-1.5">
-                                    <Label htmlFor="languages" className="text-xs font-medium text-muted-foreground">Languages</Label>
-                                    <Input
-                                        id="languages"
-                                        placeholder="e.g. English, Hindi..."
-                                        required
-                                        className="h-9 text-sm"
-                                        value={formData.languages}
-                                        onChange={(e) => setFormData({ ...formData, languages: e.target.value })}
-                                    />
-                                </div>
-                                <div className="space-y-1.5">
                                     <Label htmlFor="volume" className="text-xs font-medium text-muted-foreground">{volumeLabel}</Label>
                                     <Select
                                         value={formData.volume}
@@ -202,6 +173,50 @@ export default function PricingFlow({
                                         </SelectContent>
                                     </Select>
                                 </div>
+                            </div>
+
+                            {showTeamSize && (
+                                <div className="space-y-1.5">
+                                    <Label htmlFor="teamSize" className="text-xs font-medium text-muted-foreground">Sales & Support Team Size</Label>
+                                    <Select
+                                        value={formData.teamSize}
+                                        onValueChange={(val) => setFormData({ ...formData, teamSize: val })}
+                                    >
+                                        <SelectTrigger className="h-9 text-sm">
+                                            <SelectValue placeholder="Select size" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="Less than 15">Less than 15</SelectItem>
+                                            <SelectItem value="15–50">15–50</SelectItem>
+                                            <SelectItem value="50–100">50–100</SelectItem>
+                                            <SelectItem value="100+">100+</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            )}
+
+                            <div className="space-y-1.5">
+                                <Label htmlFor="useCase" className="text-xs font-medium text-muted-foreground">Use Case</Label>
+                                <Input
+                                    id="useCase"
+                                    placeholder="e.g. Appointment Booking, Lead Qual..."
+                                    required
+                                    className="h-9 text-sm"
+                                    value={formData.useCase}
+                                    onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
+                                />
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <Label htmlFor="languages" className="text-xs font-medium text-muted-foreground">Languages</Label>
+                                <Input
+                                    id="languages"
+                                    placeholder="e.g. English, Hindi..."
+                                    required
+                                    className="h-9 text-sm"
+                                    value={formData.languages}
+                                    onChange={(e) => setFormData({ ...formData, languages: e.target.value })}
+                                />
                             </div>
 
                             {showVoiceType && (
@@ -235,7 +250,7 @@ export default function PricingFlow({
                             <div className="bg-blue-50/50 p-5 rounded-xl border border-blue-100 text-center space-y-1.5">
                                 <h4 className="font-semibold text-blue-900 text-base">Estimated Pricing Tier</h4>
                                 <p className="text-2xl font-bold text-blue-600">{formData.volume}</p>
-                                <p className="text-xs text-blue-500">Based on your team size of {formData.teamSize}</p>
+                                {showTeamSize && <p className="text-xs text-blue-500">Based on your team size of {formData.teamSize}</p>}
                             </div>
 
                             <div className="space-y-3">
@@ -243,11 +258,11 @@ export default function PricingFlow({
                                 <div className="grid gap-2">
                                     <div className="p-2.5 rounded-lg border border-slate-100 flex justify-between items-center bg-slate-50">
                                         <span className="text-xs font-medium text-slate-600">Setup Fee</span>
-                                        <span className="font-bold text-slate-900 text-sm">₹25,000</span>
+                                        <span className="font-bold text-slate-900 text-sm">from {setupFee}</span>
                                     </div>
                                     <div className="p-2.5 rounded-lg border border-slate-100 flex justify-between items-center bg-slate-50">
-                                        <span className="text-xs font-medium text-slate-600">Per Minute Rate</span>
-                                        <span className="font-bold text-slate-900 text-sm">Dynamic</span>
+                                        <span className="text-xs font-medium text-slate-600">Rate Card</span>
+                                        <span className="font-bold text-slate-900 text-sm">Dynamic/Volume-based</span>
                                     </div>
                                     <div className="p-2.5 rounded-lg border border-slate-100 flex justify-between items-center bg-slate-50">
                                         <span className="text-xs font-medium text-slate-600">Support</span>
@@ -274,9 +289,9 @@ export default function PricingFlow({
                             </div>
 
                             <div className="space-y-1.5">
-                                <h3 className="text-xl font-bold text-slate-900">Excellent!</h3>
+                                <h3 className="text-xl font-bold text-slate-900">Great Selection!</h3>
                                 <p className="text-slate-600 text-sm max-w-xs mx-auto">
-                                    We have received your interest. Let's get you started with a demo.
+                                    We have received your interest. Let's schedule a deep-dive demo.
                                 </p>
                             </div>
 
