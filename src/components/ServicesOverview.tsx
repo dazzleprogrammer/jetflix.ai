@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, MessageSquare, User, Video, Tv, Brain, Zap, Sparkles, Check, Mic, Image as ImageIcon, CreditCard, PlayCircle, Layers, Cloud, Rocket, Bot } from "lucide-react";
+import { Phone, MessageSquare, User, Video, Tv, Brain, Zap, Sparkles, Check, Mic, Image as ImageIcon, CreditCard, PlayCircle, Layers, Cloud, Rocket, Bot, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import PricingFlow from "./PricingFlow";
@@ -147,67 +147,54 @@ export default function ServicesOverview() {
                 </div>
 
                 {/* Services Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 gap-8 max-w-7xl mx-auto">
                     {services.map((service) => (
                         <div
                             key={service.title}
                             className="group relative"
                         >
-                            <div className={`relative p-6 md:p-8 rounded-3xl bg-white/90 backdrop-blur-2xl border-2 ${service.borderColor} transition-all duration-500 flex flex-col overflow-hidden hover:shadow-2xl hover:shadow-blue-200/50 group/card`}>
+                            <div
+                                className={`relative h-auto md:h-[450px] rounded-[2.5rem] bg-white border-2 ${service.borderColor} transition-all duration-700 flex flex-col md:flex-row overflow-hidden hover:shadow-2xl hover:shadow-blue-200/50 group/card cursor-pointer shadow-sm`}
+                                onClick={() => window.location.href = service.href}
+                            >
+                                {/* Left Content Section */}
+                                <div className="flex-1 p-8 md:p-12 flex flex-col z-10 relative bg-white h-full">
+                                    <div className="flex items-center gap-4 w-full shrink-0">
+                                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.iconBg} flex items-center justify-center shadow-md group-hover/card:scale-110 transition-all duration-500 shrink-0`}>
+                                            <service.icon className={`w-6 h-6 ${service.iconColor}`} />
+                                        </div>
+                                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight font-nohemi leading-tight">
+                                            {service.title}
+                                        </h3>
+                                    </div>
 
-                                {/* Background Image Overlay on Hover */}
-                                {/* Background Image Overlay on Hover */}
-                                <div className="absolute inset-0 z-0 opacity-0 group-hover/card:opacity-100 transition-all duration-700 scale-110 group-hover/card:scale-100">
-                                    <img src={service.image} className="w-full h-full object-cover" alt="" />
-                                    {/* Dark Gradient Overlay for Readability */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/40 to-slate-950/80" />
+                                    {/* Centered Button in vacant space */}
+                                    <div className="flex-1 flex items-center justify-start w-full">
+                                        <Button
+                                            size="lg"
+                                            className="text-lg font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 hover:from-slate-800 hover:via-blue-800 hover:to-slate-800 text-white shadow-[0_10px_30px_-5px_rgba(30,58,138,0.4)] hover:shadow-[0_15px_40px_-5px_rgba(30,58,138,0.6)] transition-all duration-500 group/btn rounded-full h-14 px-10 border border-white/10"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                window.location.href = service.href;
+                                            }}
+                                        >
+                                            <span className="relative z-10">Explore</span>
+                                            <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1.5 transition-transform duration-300 relative z-10" />
+                                        </Button>
+                                    </div>
                                 </div>
 
-                                <div className="relative z-10 transition-colors duration-500">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconBg} flex items-center justify-center group-hover/card:scale-110 transition-transform duration-500`}>
-                                            <service.icon className={`w-7 h-7 ${service.iconColor}`} />
-                                        </div>
-                                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 group-hover/card:text-white transition-colors duration-500">{service.title}</h3>
-                                    </div>
-
-                                    <p className="text-slate-600 mb-8 leading-relaxed text-sm md:text-base group-hover/card:text-slate-200 transition-colors duration-500">
-                                        {service.description}
-                                    </p>
-
-                                    <div className="grid md:grid-cols-2 gap-8 mb-8">
-                                        {/* Capabilities */}
-                                        <div>
-                                            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 group-hover/card:text-white transition-colors duration-500">
-                                                <Zap className="w-4 h-4 text-blue-600 group-hover/card:text-blue-400" /> Capabilities
-                                            </h4>
-                                            <ul className="space-y-3">
-                                                {service.capabilities.map((cap, i) => (
-                                                    <li key={i} className="flex items-start gap-3 text-sm text-slate-600 group-hover/card:text-slate-300 transition-colors duration-500">
-                                                        <Check className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                                                        {cap}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Samples */}
-                                        <div>
-                                            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 group-hover/card:text-white transition-colors duration-500">
-                                                <Sparkles className="w-4 h-4 text-purple-600 group-hover/card:text-purple-400" /> Samples & Showcase
-                                            </h4>
-                                            <div className="space-y-3">
-                                                {service.samples.map((sample, i) => (
-                                                    <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-sm transition-all cursor-pointer group/sample group-hover/card:bg-white/10 group-hover/card:border-white/20">
-                                                        <sample.icon className="w-4 h-4 text-slate-400 group-hover/sample:text-blue-500 group-hover/card:text-blue-400 transition-colors" />
-                                                        <span className="text-xs font-medium text-slate-700 group-hover/card:text-slate-200">{sample.label}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <PricingFlow {...service.pricingProps} />
+                                {/* Right Image Section */}
+                                <div className="w-full md:w-3/5 h-[350px] md:h-full relative overflow-hidden">
+                                    <img
+                                        src={service.image}
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                                        alt={service.title}
+                                    />
+                                    {/* Subtle shadow on the left edge of the image to blend with content */}
+                                    <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent hidden md:block" />
+                                    {/* Inner ring for a premium feel */}
+                                    <div className="absolute inset-0 ring-1 ring-inset ring-black/5" />
                                 </div>
                             </div>
                         </div>
