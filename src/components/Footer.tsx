@@ -57,7 +57,7 @@ const Footer = () => {
             href="mailto:helpdesk@jetflix.ai"
             className="text-blue-700 hover:text-blue-900 transition-colors text-sm md:text-base font-semibold inline-block"
           >
-            helpdesk@jetflix.ai
+            helpdesk@jetflix.ai   |   +919833219195
           </a>
           <p className="text-slate-800 text-lg md:text-xl font-bold tracking-tight">
             AI Expert For Your Business 🚀✨
