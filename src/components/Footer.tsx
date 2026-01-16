@@ -74,10 +74,10 @@ const Footer = () => {
                 <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
                   <Phone className="w-4 h-4" />
                 </div>
-                <span className="text-sm md:text-base">+91 98332 19195</span>
+                <span className="text-sm md:text-base">+91 9833219195</span>
               </a>
 
-              <a
+              {/* <a
                 href="https://wa.me/919833219195"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -87,7 +87,7 @@ const Footer = () => {
                   <MessageSquare className="w-4 h-4" />
                 </div>
                 <span className="text-sm md:text-base">WhatsApp</span>
-              </a>
+              </a> */}
             </div>
           </div>
 
