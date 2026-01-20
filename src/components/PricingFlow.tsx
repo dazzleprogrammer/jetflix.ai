@@ -82,7 +82,7 @@ export default function PricingFlow({
                                 }
                             }}
                         >
-                            <span className="relative z-10">Explore</span>
+                            <span className="relative z-10">Request Pricing</span>
                             <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1.5 transition-transform duration-300 relative z-10" />
                         </Button>
                     )}

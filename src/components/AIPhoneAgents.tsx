@@ -27,34 +27,52 @@ const AudioPlayer = ({
     useCase,
     voiceType,
     language,
+    audioSrc,
     duration = "0:15"
 }: {
     title: string;
     useCase: string;
     voiceType: string;
     language: string;
+    audioSrc: string;
     duration?: string
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [audio] = useState(typeof Audio !== 'undefined' ? new Audio(audioSrc) : null);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
-        if (isPlaying) {
-            interval = setInterval(() => {
-                setProgress(prev => {
-                    if (prev >= 100) {
-                        setIsPlaying(false);
-                        return 0;
-                    }
-                    return prev + 1;
-                });
-            }, 50); // Simulates 5 seconds duration roughly
-        } else {
+        if (!audio) return;
+
+        const updateProgress = () => {
+            setProgress((audio.currentTime / audio.duration) * 100);
+            setCurrentTime(audio.currentTime);
+        };
+
+        const handleEnded = () => {
+            setIsPlaying(false);
             setProgress(0);
+        };
+
+        audio.addEventListener('timeupdate', updateProgress);
+        audio.addEventListener('ended', handleEnded);
+
+        return () => {
+            audio.removeEventListener('timeupdate', updateProgress);
+            audio.removeEventListener('ended', handleEnded);
+            audio.pause();
+        };
+    }, [audio]);
+
+    useEffect(() => {
+        if (!audio) return;
+        if (isPlaying) {
+            audio.play().catch(console.error);
+        } else {
+            audio.pause();
         }
-        return () => clearInterval(interval);
-    }, [isPlaying]);
+    }, [isPlaying, audio]);
 
     return (
         <div className="group p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-100 transition-all duration-300 flex items-center gap-4 relative overflow-hidden">
@@ -87,7 +105,11 @@ const AudioPlayer = ({
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-1 shrink-0">
-                        <span className="text-xs font-mono text-slate-400 tabular-nums">{isPlaying ? "0:0" + Math.floor(progress / 20) : duration}</span>
+                        <span className="text-xs font-mono text-slate-400 tabular-nums">
+                            {isPlaying
+                                ? `${Math.floor(currentTime / 60)}:${Math.floor(currentTime % 60).toString().padStart(2, '0')}`
+                                : duration}
+                        </span>
                         {isPlaying && <AudioVisualizer isPlaying={isPlaying} />}
                     </div>
                 </div>
@@ -184,21 +206,24 @@ export default function AIPhoneAgents() {
                                     useCase="Service Reminder"
                                     voiceType="Female - Professional"
                                     language="English/Hindi"
-                                    duration="0:45"
+                                    duration="01:40"
+                                    audioSrc="https://cdn.vocallabs.ai/Voices/f896ca5e-5ad9-4cf3-ac97-50e99ab95f03.mp4"
                                 />
                                 <AudioPlayer
-                                    title="Real Estate"
+                                    title="Hospital Appointment"
                                     useCase="Lead Qualification"
                                     voiceType="Male - Authoritative"
                                     language="English"
-                                    duration="1:20"
+                                    duration="01:40"
+                                    audioSrc="https://cdn.vocallabs.ai/Blogs/2500ee6d-e682-498b-a95c-552b71b52ea5.mp4"
                                 />
                                 <AudioPlayer
-                                    title="Payment Dues & Reminders"
+                                    title="Roadside Assistance"
                                     useCase="Collections"
                                     voiceType="Female - Polite"
                                     language="Hindi"
-                                    duration="0:30"
+                                    duration="02:08"
+                                    audioSrc="https://cdn.vocallabs.ai/Blogs/18c9df65-b28b-4ea1-a979-3d819b85e21d.mp4"
                                 />
                             </div>
                         </div>

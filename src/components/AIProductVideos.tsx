@@ -22,21 +22,20 @@ const VideoShowcase = ({ icon: Icon, title, category }: any) => (
 
 export default function AIProductVideos() {
     const sectionRef = useRef<HTMLElement>(null);
-    const video1Ref = useRef<HTMLVideoElement>(null);
-    const video2Ref = useRef<HTMLVideoElement>(null);
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        // Play videos when section comes into view
-                        video1Ref.current?.play();
-                        video2Ref.current?.play();
+                        videoRefs.current.forEach(video => {
+                            video?.play().catch(err => console.log("Video play interrupted:", err));
+                        });
                     }
                 });
             },
-            { threshold: 0.3 } // Trigger when 30% of section is visible
+            { threshold: 0.3 }
         );
 
         if (sectionRef.current) {
@@ -76,11 +75,11 @@ export default function AIProductVideos() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
-                    {/* Premium Necklace Showcase with Video */}
-                    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-transparent border border-white/20 shadow-xl">
+                    {/* Shoes Brand AI Ad - Video 1 */}
+                    <div className="group relative aspect-square rounded-2xl overflow-hidden bg-transparent border border-white/20 shadow-xl">
                         <video
-                            ref={video1Ref}
-                            src="https://cdn.pixabay.com/video/2024/05/03/210307_large.mp4"
+                            ref={el => { if (el) videoRefs.current[0] = el; }}
+                            src="https://cdn.vocallabs.ai/Blogs/7d25dd22-f056-4ede-96f0-423efdff6106.mp4"
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             autoPlay
                             muted
@@ -88,20 +87,20 @@ export default function AIProductVideos() {
                             playsInline
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">JEWELLERY</p>
-                            <h3 className="text-xl font-bold">Premium Necklace Showcase</h3>
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white text-center">
+                            <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">Social Media Ad</p>
+                            <h3 className="text-xl font-bold">Shoes Brand AI Ad</h3>
                         </div>
                         <div className="absolute top-4 right-4 p-2 rounded-full bg-white/10 backdrop-blur-md">
                             <Video className="w-4 h-4 text-white" />
                         </div>
                     </div>
 
-                    {/* FMCG Products - Dynamic Product Reveal with Video */}
-                    <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-transparent border border-white/20 shadow-xl">
+                    {/* Body Care AI Ad - Video 2 */}
+                    <div className="group relative aspect-square rounded-2xl overflow-hidden bg-transparent border border-white/20 shadow-xl">
                         <video
-                            ref={video2Ref}
-                            src="https://cdn.pixabay.com/video/2023/10/16/185261-874987042_large.mp4"
+                            ref={el => { if (el) videoRefs.current[1] = el; }}
+                            src="https://cdn.vocallabs.ai/Blogs/a1e29c51-c5f5-4502-aea5-d4ff6b3db6bb.mp4"
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             autoPlay
                             muted
@@ -109,9 +108,9 @@ export default function AIProductVideos() {
                             playsInline
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">FASHION</p>
-                            <h3 className="text-xl font-bold">Dynamic Product Reveal</h3>
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white text-center">
+                            <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">Skincare</p>
+                            <h3 className="text-xl font-bold">Body Care AI Ad</h3>
                         </div>
                         <div className="absolute top-4 right-4 p-2 rounded-full bg-white/10 backdrop-blur-md">
                             <Video className="w-4 h-4 text-white" />
