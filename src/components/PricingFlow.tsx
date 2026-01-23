@@ -5,32 +5,34 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Check, Loader2, ArrowRight } from "lucide-react";
 
+interface PricingTier {
+    name: string;
+    price: string;
+    details: string;
+}
+
 interface PricingFlowProps {
     serviceName: string;
-    volumeLabel: string;
-    volumeOptions: string[];
-    showVoiceType?: boolean;
-    showTeamSize?: boolean;
     setupFee?: string;
     redirectPath?: string;
     trigger?: React.ReactNode;
+    tiers?: PricingTier[];
+    // Keeping these for backward compatibility
+    volumeLabel?: string;
+    volumeOptions?: string[];
 }
 
 type Step = "idle" | "form" | "brochure" | "interested";
 
 export default function PricingFlow({
     serviceName,
-    volumeLabel,
-    volumeOptions,
-    showVoiceType = false,
-    showTeamSize = true,
     setupFee = "INR 25,000",
     redirectPath,
     trigger,
+    tiers
 }: PricingFlowProps) {
     const router = useRouter();
     const [step, setStep] = useState<Step>("idle");
@@ -39,13 +41,7 @@ export default function PricingFlow({
         name: "",
         businessName: "",
         email: "",
-        phone: "",
-        industry: "",
-        useCase: "",
-        languages: "",
-        voiceTypes: "",
-        teamSize: "Less than 15",
-        volume: volumeOptions[0],
+        phone: ""
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -66,9 +62,25 @@ export default function PricingFlow({
         setStep("idle");
     };
 
+    // Default tiers if none provided
+    const displayTiers = tiers || [
+        { name: "Starter", price: "Flexible", details: "Perfect for trials" },
+        { name: "Standard", price: "Volume-Based", details: "Most popular choice" },
+        { name: "Pro/Enterprise", price: "Custom", details: "Scale your production" }
+    ];
+
     return (
         <div className="w-full">
-            <Dialog open={step !== "idle"} onOpenChange={(open) => !open && resetFlow()}>
+            <Dialog
+                open={step !== "idle"}
+                onOpenChange={(open) => {
+                    if (open) {
+                        setStep("form");
+                    } else {
+                        resetFlow();
+                    }
+                }}
+            >
                 <DialogTrigger asChild>
                     {trigger ? trigger : (
                         <Button
@@ -77,8 +89,6 @@ export default function PricingFlow({
                             onClick={() => {
                                 if (redirectPath) {
                                     router.push(redirectPath);
-                                } else {
-                                    setStep("form");
                                 }
                             }}
                         >
@@ -87,156 +97,71 @@ export default function PricingFlow({
                         </Button>
                     )}
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] max-h-[85vh] overflow-y-auto p-0">
+                <DialogContent className="w-[92vw] sm:max-w-[500px] max-h-[90vh] overflow-y-auto p-0 border-none bg-white rounded-[2.5rem]">
                     <DialogHeader className="px-6 pt-6 pb-4">
                         <DialogTitle className="text-xl font-bold text-center">
                             {step === "form" && `Get Pricing for ${serviceName}`}
-                            {step === "brochure" && "Pricing Brochure"}
+                            {step === "brochure" && `${serviceName} Pricing`}
                             {step === "interested" && "Schedule a Demo"}
                         </DialogTitle>
                     </DialogHeader>
 
                     {step === "form" && (
-                        <form onSubmit={handleSubmit} className="space-y-3 px-6 pb-6">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <form onSubmit={handleSubmit} className="space-y-4 px-6 pb-6">
+                            <div className="space-y-4">
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="name" className="text-xs font-medium text-muted-foreground">Name</Label>
+                                    <Label htmlFor="name" className="text-xs font-semibold text-slate-500">Name</Label>
                                     <Input
                                         id="name"
+                                        placeholder="Enter your full name"
                                         required
-                                        className="h-9 text-sm"
+                                        className="h-11 text-sm bg-slate-50/50 border-slate-200 focus:ring-blue-500"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="businessName" className="text-xs font-medium text-muted-foreground">Business Name</Label>
+                                    <Label htmlFor="businessName" className="text-xs font-semibold text-slate-500">Business Name</Label>
                                     <Input
                                         id="businessName"
+                                        placeholder="Enter your company name"
                                         required
-                                        className="h-9 text-sm"
+                                        className="h-11 text-sm bg-slate-50/50 border-slate-200 focus:ring-blue-500"
                                         value={formData.businessName}
                                         onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                                     />
                                 </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="email" className="text-xs font-medium text-muted-foreground">Email</Label>
+                                    <Label htmlFor="email" className="text-xs font-semibold text-slate-500">Work Email</Label>
                                     <Input
                                         id="email"
                                         type="email"
+                                        placeholder="name@company.com"
                                         required
-                                        className="h-9 text-sm"
+                                        className="h-11 text-sm bg-slate-50/50 border-slate-200 focus:ring-blue-500"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="phone" className="text-xs font-medium text-muted-foreground">Phone</Label>
+                                    <Label htmlFor="phone" className="text-xs font-semibold text-slate-500">Phone Number</Label>
                                     <Input
                                         id="phone"
                                         type="tel"
+                                        placeholder="+1 (555) 000-0000"
                                         required
-                                        className="h-9 text-sm"
+                                        className="h-11 text-sm bg-slate-50/50 border-slate-200 focus:ring-blue-500"
                                         value={formData.phone}
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     />
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div className="space-y-1.5">
-                                    <Label htmlFor="industry" className="text-xs font-medium text-muted-foreground">Industry</Label>
-                                    <Input
-                                        id="industry"
-                                        required
-                                        className="h-9 text-sm"
-                                        value={formData.industry}
-                                        onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                                    />
-                                </div>
-                                <div className="space-y-1.5">
-                                    <Label htmlFor="volume" className="text-xs font-medium text-muted-foreground">{volumeLabel}</Label>
-                                    <Select
-                                        value={formData.volume}
-                                        onValueChange={(val) => setFormData({ ...formData, volume: val })}
-                                    >
-                                        <SelectTrigger className="h-9 text-sm">
-                                            <SelectValue placeholder="Select volume" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {volumeOptions.map((opt) => (
-                                                <SelectItem key={opt} value={opt}>{opt}</SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-
-                            {showTeamSize && (
-                                <div className="space-y-1.5">
-                                    <Label htmlFor="teamSize" className="text-xs font-medium text-muted-foreground">Sales & Support Team Size</Label>
-                                    <Select
-                                        value={formData.teamSize}
-                                        onValueChange={(val) => setFormData({ ...formData, teamSize: val })}
-                                    >
-                                        <SelectTrigger className="h-9 text-sm">
-                                            <SelectValue placeholder="Select size" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="Less than 15">Less than 15</SelectItem>
-                                            <SelectItem value="15–50">15–50</SelectItem>
-                                            <SelectItem value="50–100">50–100</SelectItem>
-                                            <SelectItem value="100+">100+</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            )}
-
-                            <div className="space-y-1.5">
-                                <Label htmlFor="useCase" className="text-xs font-medium text-muted-foreground">Use Case</Label>
-                                <Input
-                                    id="useCase"
-                                    placeholder="e.g. Appointment Booking, Lead Qual..."
-                                    required
-                                    className="h-9 text-sm"
-                                    value={formData.useCase}
-                                    onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-                                />
-                            </div>
-
-                            <div className="space-y-1.5">
-                                <Label htmlFor="languages" className="text-xs font-medium text-muted-foreground">Languages</Label>
-                                <Input
-                                    id="languages"
-                                    placeholder="e.g. English, Hindi..."
-                                    required
-                                    className="h-9 text-sm"
-                                    value={formData.languages}
-                                    onChange={(e) => setFormData({ ...formData, languages: e.target.value })}
-                                />
-                            </div>
-
-                            {showVoiceType && (
-                                <div className="space-y-1.5">
-                                    <Label htmlFor="voiceTypes" className="text-xs font-medium text-muted-foreground">Preferred Voice Types</Label>
-                                    <Input
-                                        id="voiceTypes"
-                                        placeholder="e.g. Male Professional, Female Cheerful..."
-                                        className="h-9 text-sm"
-                                        value={formData.voiceTypes}
-                                        onChange={(e) => setFormData({ ...formData, voiceTypes: e.target.value })}
-                                    />
-                                </div>
-                            )}
-
-                            <Button type="submit" className="w-full h-10 mt-4" disabled={isLoading}>
+                            <Button type="submit" className="w-full h-12 mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl" disabled={isLoading}>
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Getting Best Price...
+                                        Preparing Brochure...
                                     </>
                                 ) : (
                                     "Show Me Pricing"
@@ -246,36 +171,47 @@ export default function PricingFlow({
                     )}
 
                     {step === "brochure" && (
-                        <div className="space-y-5 px-6 pb-6 animate-in slide-in-from-right-10 fade-in duration-300">
-                            <div className="bg-blue-50/50 p-5 rounded-xl border border-blue-100 text-center space-y-1.5">
-                                <h4 className="font-semibold text-blue-900 text-base">Estimated Pricing Tier</h4>
-                                <p className="text-2xl font-bold text-blue-600">{formData.volume}</p>
-                                {showTeamSize && <p className="text-xs text-blue-500">Based on your team size of {formData.teamSize}</p>}
+                        <div className="space-y-6 px-6 pb-6 animate-in slide-in-from-right-10 fade-in duration-300">
+                            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 space-y-3">
+                                <h4 className="font-bold text-blue-900 text-sm uppercase tracking-wider text-center">Available Pricing Tiers</h4>
+                                <div className="grid gap-4">
+                                    {displayTiers.map((tier, idx) => (
+                                        <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white border border-blue-100 shadow-sm">
+                                            <div className="space-y-0.5">
+                                                <div className="font-bold text-slate-900">{tier.name}</div>
+                                                <div className="text-[10px] text-slate-500 font-medium">{tier.details}</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="font-black text-blue-600">{tier.price}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="text-[10px] text-blue-500 font-medium text-center pt-2 italic">Custom plans tailored for {formData.businessName}</p>
                             </div>
 
-                            <div className="space-y-3">
-                                <h4 className="font-semibold px-1 text-sm">Pricing Brochure Details</h4>
-                                <div className="grid gap-2">
-                                    <div className="p-2.5 rounded-lg border border-slate-100 flex justify-between items-center bg-slate-50">
-                                        <span className="text-xs font-medium text-slate-600">Setup Fee</span>
-                                        <span className="font-bold text-slate-900 text-sm">from {setupFee}</span>
-                                    </div>
-                                    <div className="p-2.5 rounded-lg border border-slate-100 flex justify-between items-center bg-slate-50">
-                                        <span className="text-xs font-medium text-slate-600">Rate Card</span>
-                                        <span className="font-bold text-slate-900 text-sm">Dynamic/Volume-based</span>
-                                    </div>
-                                    <div className="p-2.5 rounded-lg border border-slate-100 flex justify-between items-center bg-slate-50">
-                                        <span className="text-xs font-medium text-slate-600">Support</span>
-                                        <span className="font-bold text-slate-900 text-sm">24/7 Priority</span>
-                                    </div>
+                            <div className="space-y-4">
+                                <h4 className="font-bold text-slate-900 text-sm px-1">Implementation Details</h4>
+                                <div className="grid gap-3">
+                                    {[
+                                        { label: "Setup Fee", value: `from ${setupFee}` },
+                                        { label: "Production", value: "AI-Powered Automation" },
+                                        { label: "Support", value: "24/7 Priority Support" },
+                                        { label: "Delivery", value: "Within 48 Hours" }
+                                    ].map((item, i) => (
+                                        <div key={i} className="p-3 rounded-xl border border-slate-100 flex justify-between items-center bg-slate-50/50">
+                                            <span className="text-xs font-semibold text-slate-500">{item.label}</span>
+                                            <span className="font-bold text-slate-900 text-sm">{item.value}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
-                            <div className="pt-3 flex gap-2.5">
-                                <Button variant="outline" className="flex-1 h-9 text-sm" onClick={() => setStep("form")}>
+                            <div className="pt-4 flex gap-3">
+                                <Button variant="outline" className="flex-1 h-11 text-sm font-bold border-2 rounded-xl" onClick={() => setStep("form")}>
                                     Back
                                 </Button>
-                                <Button className="flex-1 bg-green-600 hover:bg-green-700 h-9 text-sm" onClick={handleInterested}>
+                                <Button className="flex-1 bg-green-600 hover:bg-green-700 h-11 text-sm font-bold rounded-xl" onClick={handleInterested}>
                                     Interested
                                 </Button>
                             </div>
@@ -284,20 +220,20 @@ export default function PricingFlow({
 
                     {step === "interested" && (
                         <div className="text-center space-y-6 px-6 pb-6 animate-in zoom-in-95 duration-300">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto shadow-sm">
-                                <Check className="w-8 h-8 text-green-600" />
+                            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                                <Check className="w-10 h-10 text-green-600" />
                             </div>
 
-                            <div className="space-y-1.5">
-                                <h3 className="text-xl font-bold text-slate-900">Great Selection!</h3>
-                                <p className="text-slate-600 text-sm max-w-xs mx-auto">
-                                    We have received your interest. Let's schedule a deep-dive demo.
+                            <div className="space-y-2">
+                                <h3 className="text-2xl font-bold text-slate-900">Request Received!</h3>
+                                <p className="text-slate-600 text-sm leading-relaxed max-w-xs mx-auto">
+                                    Thanks {formData.name}, we've received your interest for {formData.businessName}. Let's schedule a deep-dive call.
                                 </p>
                             </div>
 
                             <Button
                                 size="lg"
-                                className="w-full max-w-sm mx-auto shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all h-10 text-sm"
+                                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold h-12 rounded-xl shadow-lg transition-all"
                                 onClick={() => window.open('https://calendly.com', '_blank')}
                             >
                                 Schedule Demo Call

@@ -1,200 +1,149 @@
 "use client";
 
-import { Phone, MessageSquare, User, Video, Tv, Brain, Zap, Sparkles, Check, Mic, Image as ImageIcon, CreditCard, PlayCircle, Layers, Cloud, Rocket, Bot, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import PricingFlow from "./PricingFlow";
+import { ArrowRight } from "lucide-react";
 
 export default function ServicesOverview() {
     const services = [
         {
-            icon: Phone,
             title: "AI Phone Call Agents",
-            description: "Smart AI phone agents that can make outbound calls or handle inbound customer calls, reminders, and payment collection—just like a real human.",
-            capabilities: [
-                "Inbound & outbound calls",
-                "Multi-language support",
-                "Human-like voice interactions",
-                "Automated reminders & follow-ups",
-                "Payment reminders & collections"
+            description: "Smart Phone agents that can reach out or handle customer calls, reminders, and collect payments just like a real person.",
+            bullets: [
+                "24/7 Availability",
+                "Upto 1 Lakh Calls/Day",
+                "Speaks in 12+ languages",
+                "Send Whatsapp/SMS"
             ],
-            samples: [
-                { label: "Car Service Reminder", icon: Mic },
-                { label: "Real Estate Calls", icon: Mic },
-                { label: "Payment Dues", icon: Mic }
-            ],
-            borderColor: "border-blue-500/20",
-            iconBg: "from-blue-100 to-indigo-100",
-            iconColor: "text-blue-600",
-            image: "https://i.pinimg.com/736x/21/2a/fc/212afce47eebb7d34ae69a480263e70f.jpg",
+            image: "https://cdn.vocallabs.ai/Blogs/85b3fde9-7f5a-40be-9c6a-3134d8da6dd6.png",
             href: "/phone-agents",
-            pricingProps: {
-                serviceName: "AI Phone Call Agents",
-                volumeLabel: "Monthly Call Volumes",
-                volumeOptions: ["Less than 15K call minutes", "15K–50K call minutes", "50K–1L call minutes", "1L+ call minutes"],
-                showVoiceType: true,
-                showTeamSize: true,
-                setupFee: "INR 25,000",
-                redirectPath: "/phone-agents"
-            }
+            bgColor: "bg-blue-50/50",
+            hoverBg: "hover:bg-blue-100/50",
+            borderColor: "border-blue-100",
+            bulletColor: "bg-blue-500",
+            bulletShadow: "shadow-[0_0_8px_rgba(59,130,246,0.5)]"
         },
         {
-            icon: MessageSquare,
             title: "AI WhatsApp Agents",
-            description: "Automated WhatsApp AI agents that instantly manage customer messages, updates, FAQs, and promotions.",
-            capabilities: [
-                "Instant auto-reply to messages",
-                "Auto-read voice notes and respond",
-                "Image analysis and smart replies",
-                "CRM updates and integrations",
-                "Multi-language support"
+            description: "Increase conversions with AI agents that reply instantly, update your CRM automatically, and support customers in 12+ languages.",
+            bullets: [
+                "Auto-Collect Lead Data",
+                "Listens to Voice Notes",
+                "Updates CRM Records",
+                "Analyses Product Image"
             ],
-            samples: [
-                { label: "Voice Note Response", icon: Mic },
-                { label: "Product Image Reading", icon: ImageIcon },
-                { label: "Payment Flow", icon: CreditCard }
-            ],
-            borderColor: "border-emerald-500/20",
-            iconBg: "from-emerald-100 to-teal-100",
-            iconColor: "text-emerald-600",
             image: "https://i.pinimg.com/1200x/42/49/34/424934965bff64129d45456311b6bc95.jpg",
             href: "/whatsapp-agents",
-            pricingProps: {
-                serviceName: "AI WhatsApp Agents",
-                volumeLabel: "Monthly Message Volumes",
-                volumeOptions: ["Less than 15K messages", "15K–50K messages", "50K–1L messages", "1L+ messages"],
-                showTeamSize: true,
-                setupFee: "INR 25,000",
-                redirectPath: "/whatsapp-agents"
-            }
+            bgColor: "bg-emerald-50/50",
+            hoverBg: "hover:bg-emerald-100/50",
+            borderColor: "border-emerald-100",
+            bulletColor: "bg-emerald-500",
+            bulletShadow: "shadow-[0_0_8px_rgba(16,185,129,0.5)]"
         },
         {
-            icon: User,
             title: "AI Human Clones",
-            description: "A digital AI twin of you—or an unreal AI persona—that speaks in your voice for marketing videos or customer support.",
-            capabilities: [
-                "AI Twins of Real Humans",
-                "Unreal AI Avatars",
-                "Interactive Demo",
-                "Talk to your AI Twin",
-                "Instant real-time answers"
+            description: "A digital AI twin of you or non-existing human that speaks in your voice for marketing videos or customer support.",
+            bullets: [
+                "Text to Talking Video",
+                "Instagram Reels",
+                "Speaks in 12+ languages",
+                "No Shoot required"
             ],
-            samples: [
-                { label: "Real Human AI Twins", icon: User },
-                { label: "Unreal AI Avatars", icon: Bot },
-                { label: "Interactive Demo", icon: PlayCircle }
-            ],
-            borderColor: "border-purple-500/20",
-            iconBg: "from-purple-100 to-violet-100",
-            iconColor: "text-purple-600",
             image: "https://i.pinimg.com/1200x/c4/fa/ab/c4faab263802b0780ce242b0147a5a4d.jpg",
             href: "/human-clones",
-            pricingProps: {
-                serviceName: "AI Human Clones",
-                volumeLabel: "Videos per Month",
-                volumeOptions: ["4", "8", "12", "16+"],
-                showVoiceType: true,
-                showTeamSize: false,
-                setupFee: "INR 25,000",
-                redirectPath: "/human-clones"
-            }
+            bgColor: "bg-purple-50/50",
+            hoverBg: "hover:bg-purple-100/50",
+            borderColor: "border-purple-100",
+            bulletColor: "bg-purple-500",
+            bulletShadow: "shadow-[0_0_8px_rgba(139,92,246,0.5)]"
         },
         {
-            icon: Video,
             title: "AI Product Videos",
-            description: "Convert your product photos into glamorous AI-generated marketing videos using AI models.",
-            capabilities: [
-                "Convert Photos to Viral Videos",
-                "Jewellery AI Model Showcase",
-                "Fashion Walk for Clothing",
-                "FMCG Product Showcase",
-                "Multiple Language Support"
+            description: "A very high quality videos for TV Commercials using AI without camera, without studio, without human crew.",
+            bullets: [
+                "Image to Brand Ads",
+                "TV/OTT Quality Videos",
+                "Multi-Language",
+                "No Shoot required"
             ],
-            samples: [
-                { label: "Jewellery Showcase", icon: Video },
-                { label: "Fashion Walk", icon: Video },
-                { label: "FMCG Showcase", icon: Video }
-            ],
-            borderColor: "border-pink-500/20",
-            iconBg: "from-pink-100 to-fuchsia-100",
-            iconColor: "text-pink-600",
-            image: "https://i.pinimg.com/736x/c8/a7/de/c8a7de18b04321ad1d75c14fb4386adc.jpg",
+            image: "https://cdn.vocallabs.ai/Blogs/85b34331-e1d9-4554-8d67-9e413cfb7a1a.avif",
             href: "/product-videos",
-            pricingProps: {
-                serviceName: "AI Product Videos",
-                volumeLabel: "Videos per Month",
-                volumeOptions: ["4", "8", "12", "16+"],
-                showTeamSize: false,
-                setupFee: "INR 25,000",
-                redirectPath: "/product-videos"
-            }
+            bgColor: "bg-orange-50/50",
+            hoverBg: "hover:bg-orange-100/50",
+            borderColor: "border-orange-100",
+            bulletColor: "bg-orange-500",
+            bulletShadow: "shadow-[0_0_8px_rgba(249,115,22,0.5)]"
         }
     ];
 
     return (
-        <section className="relative py-16 md:py-24 overflow-hidden bg-white">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-            <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <section className="py-24 bg-[#FAFAFB]">
+            <div className="container mx-auto px-6">
                 {/* Header */}
-                <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-3xl md:text-6xl font-bold font-nohemi text-slate-900 mb-6 tracking-tight">
+                <div className="text-center mb-16 space-y-4">
+                    <h2 className="text-4xl md:text-6xl font-bold font-nohemi text-slate-900 tracking-tight">
                         AI Services & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Expertise</span>
                     </h2>
-                    <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        Cutting-edge AI solutions designed to transform your business operations and marketing.
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium">
+                        World-class AI infrastructure built to scale your business operations and marketing.
                     </p>
                 </div>
 
-                {/* Services Grid */}
-                <div className="grid grid-cols-1 gap-8 max-w-7xl mx-auto">
-                    {services.map((service) => (
+                {/* Grid Layout: 2 columns on laptop, 1 on mobile */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    {services.map((service, index) => (
                         <div
-                            key={service.title}
-                            className="group relative"
+                            key={index}
+                            className={`group relative h-auto md:aspect-square rounded-[2rem] md:rounded-[2.5rem] overflow-hidden ${service.bgColor} border ${service.borderColor} shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${service.hoverBg}`}
                         >
-                            <div
-                                className={`relative h-auto md:h-[450px] rounded-[2.5rem] bg-white border-2 ${service.borderColor} transition-all duration-700 flex flex-col md:flex-row overflow-hidden hover:shadow-2xl hover:shadow-blue-200/50 group/card cursor-pointer shadow-sm`}
-                                onClick={() => window.location.href = service.href}
-                            >
-                                {/* Left Content Section */}
-                                <div className="flex-1 p-8 md:p-12 flex flex-col z-10 relative bg-white h-full">
-                                    <div className="flex items-center gap-4 w-full shrink-0">
-                                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.iconBg} flex items-center justify-center shadow-md group-hover/card:scale-110 transition-all duration-500 shrink-0`}>
-                                            <service.icon className={`w-6 h-6 ${service.iconColor}`} />
-                                        </div>
-                                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight font-nohemi leading-tight">
-                                            {service.title}
-                                        </h3>
-                                    </div>
+                            {/* Grid Background Effect */}
+                            <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:30px_30px] opacity-100" />
 
-                                    {/* Centered Button in vacant space */}
-                                    <div className="flex-1 flex items-center justify-start w-full">
-                                        <Button
-                                            size="lg"
-                                            className="text-lg font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 hover:from-slate-800 hover:via-blue-800 hover:to-slate-800 text-white shadow-[0_10px_30px_-5px_rgba(30,58,138,0.4)] hover:shadow-[0_15px_40px_-5px_rgba(30,58,138,0.6)] transition-all duration-500 group/btn rounded-full h-14 px-10 border border-white/10"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                window.location.href = service.href;
-                                            }}
-                                        >
-                                            <span className="relative z-10">Explore</span>
-                                            <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1.5 transition-transform duration-300 relative z-10" />
-                                        </Button>
-                                    </div>
-                                </div>
-
-                                {/* Right Image Section */}
-                                <div className="w-full md:w-3/5 h-[350px] md:h-full relative overflow-hidden">
+                            <div className="relative h-full p-6 md:p-10 flex flex-col items-start text-left">
+                                {/* Circular Image (Center Top) */}
+                                <div className="self-center relative w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:scale-105 transition-transform duration-700 mb-6 bg-white">
                                     <img
                                         src={service.image}
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
                                         alt={service.title}
+                                        className="w-full h-full object-cover"
                                     />
-                                    {/* Subtle shadow on the left edge of the image to blend with content */}
-                                    <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent hidden md:block" />
-                                    {/* Inner ring for a premium feel */}
-                                    <div className="absolute inset-0 ring-1 ring-inset ring-black/5" />
+                                    <div className="absolute inset-0 bg-blue-500/5" />
+                                </div>
+
+                                {/* Logo / Badge (Left Aligned) */}
+                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 bg-white mb-3 shadow-sm">
+                                    <span className="text-blue-600 font-black text-sm tracking-tighter">JETFLIX</span>
+                                    <span className="text-amber-500 text-[9px] font-bold">.ai</span>
+                                </div>
+
+                                {/* Title (Left Aligned, Normal weight) */}
+                                <h2 className="text-slate-900 text-xl md:text-3xl font-normal tracking-tight mb-3 w-full">
+                                    {service.title}
+                                </h2>
+
+                                {/* Description (Left Aligned) */}
+                                <p className="text-slate-500 text-xs md:text-sm font-medium leading-relaxed mb-6 max-w-md">
+                                    {service.description}
+                                </p>
+
+                                {/* Capabilities Box (Left Aligned content inside) */}
+                                <div className="w-full grid grid-cols-2 gap-x-4 gap-y-3 p-4 md:p-6 rounded-[1.25rem] md:rounded-[1.5rem] bg-white/80 border border-slate-100 backdrop-blur-md mb-6 shadow-sm">
+                                    {service.bullets.map((bullet, idx) => (
+                                        <div key={idx} className="flex items-center gap-2.5">
+                                            <div className={`w-1.5 h-1.5 rounded-full ${service.bulletColor} ${service.bulletShadow}`} />
+                                            <span className="text-[10px] md:text-xs font-bold text-slate-700">
+                                                {bullet}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Explore Button (Center Aligned at bottom) */}
+                                <div className="mt-auto w-full flex justify-center pb-2 md:pb-0">
+                                    <button
+                                        className="px-8 py-2.5 rounded-xl border border-slate-900 bg-slate-900 text-white font-bold text-xs tracking-wide transition-all duration-300 hover:bg-slate-800 hover:shadow-xl active:scale-95"
+                                        onClick={() => window.location.href = service.href}
+                                    >
+                                        Explore
+                                    </button>
                                 </div>
                             </div>
                         </div>

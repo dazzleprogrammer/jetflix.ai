@@ -1,10 +1,25 @@
 "use client";
 
-import { UserCircle2, Users, Wand2, PlayCircle, Sparkles, MessageSquare } from "lucide-react";
+import { UserCircle2, Users, Wand2, PlayCircle, PauseCircle, Sparkles, MessageSquare } from "lucide-react";
+import { useRef, useState } from "react";
 import PricingFlow from "./PricingFlow";
 import { Button } from "@/components/ui/button";
 
 export default function AIHumanClones() {
+    const [isPlaying, setIsPlaying] = useState(true);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const togglePlay = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
     const videoVolumeOptions = [
         "4 videos/month",
         "8 videos/month",
@@ -73,59 +88,8 @@ export default function AIHumanClones() {
                             ))}
                         </div>
 
-                        <div className="pt-8 space-y-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-                            <div className="flex items-center gap-4">
-                                <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1" />
-                                <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground px-2">
-                                    Featured Example
-                                </span>
-                                <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1" />
-                            </div>
-
-                            <div className="relative group max-w-sm mx-auto lg:mx-0">
-                                {/* Premium Card Container */}
-                                <div className="relative p-3 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md rounded-[2.5rem] border border-white/40 dark:border-slate-800 shadow-2xl transition-all duration-700 group-hover:scale-[1.02] group-hover:rotate-1">
-
-                                    {/* Video/Image Content */}
-                                    <div className="relative overflow-hidden rounded-[1.8rem] aspect-video sm:aspect-[4/3] bg-slate-900">
-                                        <img
-                                            src="https://i.pinimg.com/1200x/a2/75/38/a275385c642aa8548209edc5479d3e3b.jpg"
-                                            alt="Founder Clone"
-                                            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
-                                        />
-
-                                        {/* Overlays */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
-
-                                        {/* Play Button Overlay */}
-                                        <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-                                            <div className="p-4 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 shadow-glow">
-                                                <PlayCircle className="w-12 h-12 text-white" />
-                                            </div>
-                                        </div>
-
-                                        {/* Content Info */}
-                                        <div className="absolute bottom-6 left-6 right-6 z-20 transition-transform duration-500 group-hover:-translate-y-2">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                                                <span className="text-[10px] font-bold text-green-400 uppercase tracking-tighter">Live Preview</span>
-                                            </div>
-                                            <h3 className="text-2xl font-bold text-white mb-1">Founder Clone</h3>
-                                            <p className="text-sm text-slate-300 font-medium tracking-wide">Marketing Updates • AI Voice Cloned</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Floating Decor elements */}
-                                <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
-                                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-indigo-500/30 rounded-full blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Pricing/CTA Side */}
-                    <div className="flex-1 lg:pl-10">
-                        <div className="sticky top-24 space-y-8 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+                        {/* Request Pricing Card (Moved from Right) */}
+                        <div className="pt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                             <div className="p-8 md:p-10 rounded-[2.5rem] bg-card border border-border/50 shadow-2xl relative overflow-hidden group/pricing">
                                 <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-900/10 dark:to-pink-900/10 opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700" />
 
@@ -143,6 +107,58 @@ export default function AIHumanClones() {
                                         volumeLabel="Monthly Video Volume"
                                         volumeOptions={videoVolumeOptions}
                                     />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Floating Decor elements */}
+                        <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-indigo-500/30 rounded-full blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
+                    </div>
+
+                    {/* Right Sticky Side */}
+                    <div className="flex-1 lg:pl-10">
+                        <div className="sticky top-24 space-y-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+
+                            {/* Refined Video Showcase (Moved from Left) */}
+                            <div className="relative group w-full mx-auto lg:mx-0">
+                                {/* Premium Card Container */}
+                                <div className="relative p-2 bg-white/20 dark:bg-slate-900/20 backdrop-blur-md rounded-[2.5rem] border border-white/20 dark:border-slate-800 shadow-2xl transition-all duration-700">
+
+                                    {/* Video Content */}
+                                    <div
+                                        className="relative overflow-hidden rounded-[2rem] aspect-video bg-slate-950 cursor-pointer"
+                                        onClick={togglePlay}
+                                    >
+                                        <video
+                                            ref={videoRef}
+                                            src="https://cdn.vocallabs.ai/Blogs/b4506c0e-bd88-4728-84c3-c4fef6aeab39.mp4"
+                                            className="absolute inset-0 w-full h-full object-cover"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                        />
+
+                                        {/* Minimal Overlay */}
+                                        <div className={`absolute inset-0 bg-black/40 flex items-center justify-center z-20 transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
+                                            <div className="p-6 rounded-full bg-white/10 backdrop-blur-2xl border border-white/20 shadow-glow group-hover:scale-110 transition-transform">
+                                                {isPlaying ? (
+                                                    <PauseCircle className="w-16 h-16 text-white" />
+                                                ) : (
+                                                    <PlayCircle className="w-16 h-16 text-white" />
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Bottom Fade */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
+
+                                        {/* Minimal Label */}
+                                        <div className="absolute bottom-6 left-8 z-20">
+                                            <h3 className="text-2xl font-bold text-white tracking-tight">Founder Clone</h3>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

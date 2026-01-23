@@ -44,29 +44,26 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* What Makes Us Different Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.15s" }}>
+            {/* Simple Points List */}
+            <div className="space-y-4 mb-10 animate-slide-up" style={{ animationDelay: "0.15s" }}>
               {[
-                { text: "Launch in 5 days", sub: "Rapid Deployment", color: "blue" },
-                { text: "1L+ AI Calls/Day", sub: "Massive Scale", color: "indigo" },
-                { text: "AI Twin in 24h", sub: "Digital Clones", color: "purple" },
-                { text: "Ads in a week", sub: "Production Speed", color: "pink" },
-                { text: "Expert AI Team", sub: "TheIndianTechGal", color: "sky" }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/50 hover:border-blue-300 hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.15)] hover:-translate-y-1.5 transition-all duration-500 group/card cursor-default overflow-hidden relative">
-                  {/* Subtle Background Shimmer on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/5 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
-
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 flex items-center justify-center shrink-0 border border-${item.color}-200 group-hover/card:scale-110 group-hover/card:rotate-6 transition-all duration-500 shadow-sm`}>
-                    <Sparkles className={`w-5 h-5 text-${item.color}-600 group-hover/card:animate-pulse`} />
+                "Launch Your AI Solutions in 5 days",
+                "Ability to do 1 Lakh+ AI calls/day",
+                "Create Your AI Twin in a Day",
+                "Create Commercial Ads in a week",
+                "Team Behind TheIndianTechGal AI Podcaster"
+              ].map((text, i) => (
+                <div key={i} className="flex items-center gap-3 group/item">
+                  <div className="flex-shrink-0">
+                    <div className="w-5 h-5 rounded-full border-2 border-blue-500 flex items-center justify-center bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
                   </div>
-                  <div className="relative z-10">
-                    <p className="text-sm font-bold text-slate-900 leading-tight group-hover/card:text-blue-600 transition-colors duration-300">{item.text}</p>
-                    <p className="text-[10px] uppercase tracking-wider text-slate-400 font-bold whitespace-nowrap group-hover/card:text-blue-400 transition-colors duration-300">{item.sub}</p>
-                  </div>
-
-                  {/* Highlight Corner */}
-                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-blue-500/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                  <p className="text-base md:text-lg font-bold text-slate-800 transition-colors duration-300 group-hover/item:text-blue-600">
+                    {text}
+                  </p>
                 </div>
               ))}
             </div>
@@ -101,15 +98,12 @@ const HeroSection = () => {
 
               {/* Internal Browser Frame */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-slate-950">
-                {/* Video content */}
+                {/* Image content */}
                 <div className="relative aspect-video flex items-center justify-center group-hover/hero-visual:scale-105 transition-transform duration-[2s]">
-                  <video
-                    src="https://cdn.vocallabs.ai/Blogs/8f7e7c13-f520-4ce7-91f2-440c9235e5a4.mp4"
+                  <img
+                    src="https://cdn.vocallabs.ai/Blogs/85b3fde9-7f5a-40be-9c6a-3134d8da6dd6.png"
+                    alt="AI Phone Call Agents"
                     className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
                   />
 
                   {/* Subtle Gradient Overlay */}
