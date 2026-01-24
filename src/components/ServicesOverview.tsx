@@ -75,7 +75,7 @@ export default function ServicesOverview() {
     ];
 
     return (
-        <section className="py-24 bg-[#FAFAFB]">
+        <section className="pt-4 pb-12 md:py-12 bg-[#FAFAFB]">
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-4">
@@ -83,7 +83,7 @@ export default function ServicesOverview() {
                         AI Services & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Expertise</span>
                     </h2>
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium">
-                        World-class AI infrastructure built to scale your business operations and marketing.
+                        We don't just build AI systems, we architect revenue engines. We help brands scale faster and smarter with AI.
                     </p>
                 </div>
 
@@ -92,40 +92,33 @@ export default function ServicesOverview() {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className={`group relative h-auto md:aspect-square rounded-[2rem] md:rounded-[2.5rem] overflow-hidden ${service.bgColor} border ${service.borderColor} shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${service.hoverBg}`}
+                            className="group relative h-auto md:aspect-square rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#0c4a6e] via-[#1298EA] to-[#0284c7] border border-blue-400/20 shadow-[0_20px_60px_-15px_rgba(18,152,234,0.4)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_-15px_rgba(18,152,234,0.6)] hover:from-[#075985] hover:via-[#0ea5e9] hover:to-[#0369a1]"
                         >
                             {/* Grid Background Effect */}
                             <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:30px_30px] opacity-100" />
 
-                            <div className="relative h-full p-6 md:p-10 flex flex-col items-start text-left">
-                                {/* Circular Image (Center Top) */}
-                                <div className="self-center relative w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:scale-105 transition-transform duration-700 mb-6 bg-white">
+                            <div className="relative h-full p-6 md:p-10 flex flex-col items-center text-center">
+                                {/* Rectangle Image (Top Center) */}
+                                <div className="relative w-48 h-32 md:w-56 md:h-40 rounded-2xl border-4 border-white/90 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700 mb-6 bg-white">
                                     <img
                                         src={service.image}
                                         alt={service.title}
                                         className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-blue-500/5" />
                                 </div>
 
-                                {/* Logo / Badge (Left Aligned) */}
-                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-slate-200 bg-white mb-3 shadow-sm">
-                                    <span className="text-blue-600 font-black text-sm tracking-tighter">JETFLIX</span>
-                                    <span className="text-amber-500 text-[9px] font-bold">.ai</span>
-                                </div>
-
-                                {/* Title (Left Aligned, Normal weight) */}
-                                <h2 className="text-slate-900 text-xl md:text-3xl font-normal tracking-tight mb-3 w-full">
+                                {/* Title (Center Aligned) */}
+                                <h2 className="text-white text-2xl md:text-3xl font-semibold tracking-tight mb-4 w-full font-nohemi">
                                     {service.title}
                                 </h2>
 
-                                {/* Description (Left Aligned) */}
-                                <p className="text-slate-500 text-xs md:text-sm font-medium leading-relaxed mb-6 max-w-md">
+                                {/* Description (Center Aligned) */}
+                                <p className="text-blue-50 text-sm md:text-base font-normal leading-relaxed mb-6">
                                     {service.description}
                                 </p>
 
                                 {/* Capabilities Box (Left Aligned content inside) */}
-                                <div className="w-full grid grid-cols-2 gap-x-4 gap-y-3 p-4 md:p-6 rounded-[1.25rem] md:rounded-[1.5rem] bg-white/80 border border-slate-100 backdrop-blur-md mb-6 shadow-sm">
+                                <div className="w-full grid grid-cols-2 gap-x-4 gap-y-3 p-4 md:p-6 rounded-[1.25rem] md:rounded-[1.5rem] bg-white/95 border border-white/30 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] mb-6">
                                     {service.bullets.map((bullet, idx) => (
                                         <div key={idx} className="flex items-center gap-2.5">
                                             <div className={`w-1.5 h-1.5 rounded-full ${service.bulletColor} ${service.bulletShadow}`} />
@@ -139,7 +132,7 @@ export default function ServicesOverview() {
                                 {/* Explore Button (Center Aligned at bottom) */}
                                 <div className="mt-auto w-full flex justify-center pb-2 md:pb-0">
                                     <button
-                                        className="px-8 py-2.5 rounded-xl border border-slate-900 bg-slate-900 text-white font-bold text-xs tracking-wide transition-all duration-300 hover:bg-slate-800 hover:shadow-xl active:scale-95"
+                                        className="px-8 py-3 rounded-xl bg-white text-[#1298EA] font-bold text-xs tracking-wide transition-all duration-300 hover:bg-blue-50 hover:shadow-[0_8px_24px_rgba(18,152,234,0.3)] active:scale-95 border border-blue-100"
                                         onClick={() => window.location.href = service.href}
                                     >
                                         Explore

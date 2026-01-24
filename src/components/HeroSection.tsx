@@ -3,7 +3,7 @@ import { Play, Sparkles, MessageSquare } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-20 overflow-hidden">
+    <section className="relative min-h-screen pt-24 md:pt-32 pb-2 md:pb-10 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-hero opacity-80" />
       <div className="absolute top-20 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-sky-400/20 opacity-30 blur-[100px] rounded-full animate-pulse" />
@@ -37,10 +37,10 @@ const HeroSection = () => {
             {/* Subtitle / Intro */}
             <div className="space-y-4 mb-10 animate-slide-up" style={{ animationDelay: "0.1s" }}>
               <p className="text-lg md:text-2xl font-medium text-slate-800 leading-tight max-w-xl">
-                We help brands architect revenue engines, scaling <span className="text-blue-600 font-bold underline decoration-blue-200 decoration-4 underline-offset-4">faster & smarter</span> with custom AI.
+                Jetflix is an AI Service Company that helps businesses implement AI for their business growth. We help brands scale <span className="text-blue-600 font-bold underline decoration-blue-200 decoration-4 underline-offset-4">faster and smarter with AI.</span>
               </p>
               <p className="text-sm md:text-base text-slate-500 leading-relaxed max-w-lg">
-                Specialized AI solutions designed for companies that need to scale rapidly without sacrificing quality or brand authenticity.
+                We don't just build AI systems, we architect revenue engines.
               </p>
             </div>
 
