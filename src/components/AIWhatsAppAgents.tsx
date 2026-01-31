@@ -135,15 +135,23 @@ export default function AIWhatsAppAgents() {
                                     ))}
                                 </div>
 
-                                <PricingFlow
-                                    serviceName="AI WhatsApp Agents"
-                                    volumeLabel="Monthly Messages"
-                                    volumeOptions={["<10K", "10K-50K", "50K-100K", "100K+"]}
-                                />
+                                <div className="flex justify-center mt-6">
+                                    <PricingFlow
+                                        serviceName="AI WhatsApp Agents"
+                                        volumeLabel="Monthly Messages"
+                                        volumeOptions={["<10K", "10K-50K", "50K-100K", "100K+"]}
+                                        trigger={
+                                            <Button size="xl" className="bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-white font-bold text-lg px-8 h-14 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full group/btn border border-white/10">
+                                                Request Pricing
+                                                <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1.5 transition-transform" />
+                                            </Button>
+                                        }
+                                    />
+                                </div>
 
-                                <p className="text-xs text-center text-slate-500">
+                                {/* <p className="text-xs text-center text-slate-500">
                                     Setup costs start at ₹25k
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>

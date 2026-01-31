@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, Check } from "lucide-react";
 import Image from "next/image";
 
 export default function ServicesOverview() {
@@ -16,11 +16,7 @@ export default function ServicesOverview() {
             ],
             image: "https://cdn.vocallabs.ai/Blogs/85b3fde9-7f5a-40be-9c6a-3134d8da6dd6.png",
             href: "/phone-agents",
-            bgColor: "bg-blue-50/50",
-            hoverBg: "hover:bg-blue-100/50",
-            borderColor: "border-blue-100",
-            bulletColor: "bg-blue-500",
-            bulletShadow: "shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+            accentColor: "blue"
         },
         {
             title: "AI WhatsApp Agents",
@@ -33,11 +29,7 @@ export default function ServicesOverview() {
             ],
             image: "https://i.pinimg.com/1200x/42/49/34/424934965bff64129d45456311b6bc95.jpg",
             href: "/whatsapp-agents",
-            bgColor: "bg-emerald-50/50",
-            hoverBg: "hover:bg-emerald-100/50",
-            borderColor: "border-emerald-100",
-            bulletColor: "bg-emerald-500",
-            bulletShadow: "shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+            accentColor: "emerald"
         },
         {
             title: "AI Human Clones",
@@ -50,11 +42,7 @@ export default function ServicesOverview() {
             ],
             image: "https://i.pinimg.com/1200x/c4/fa/ab/c4faab263802b0780ce242b0147a5a4d.jpg",
             href: "/human-clones",
-            bgColor: "bg-purple-50/50",
-            hoverBg: "hover:bg-purple-100/50",
-            borderColor: "border-purple-100",
-            bulletColor: "bg-purple-500",
-            bulletShadow: "shadow-[0_0_8px_rgba(139,92,246,0.5)]"
+            accentColor: "purple"
         },
         {
             title: "AI Product Videos",
@@ -67,85 +55,86 @@ export default function ServicesOverview() {
             ],
             image: "https://cdn.vocallabs.ai/Blogs/85b34331-e1d9-4554-8d67-9e413cfb7a1a.avif",
             href: "/product-videos",
-            bgColor: "bg-orange-50/50",
-            hoverBg: "hover:bg-orange-100/50",
-            borderColor: "border-orange-100",
-            bulletColor: "bg-orange-500",
-            bulletShadow: "shadow-[0_0_8px_rgba(249,115,22,0.5)]"
+            accentColor: "orange"
         }
     ];
 
     return (
-        <section className="pt-4 pb-12 md:py-12 bg-[#FAFAFB]">
+        <section className="py-16 md:py-24 bg-slate-50 overflow-hidden">
             <div className="container mx-auto px-6">
                 {/* Header */}
-                <div className="text-center mb-16 space-y-4">
+                <div className="text-center mb-16 md:mb-20 space-y-4">
                     <h2 className="text-4xl md:text-6xl font-bold font-nohemi text-slate-900 tracking-tight">
                         AI Services & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Expertise</span>
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium">
+                    <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
                         We don't just build AI systems, we architect revenue engines. We help brands scale faster and smarter with AI.
                     </p>
                 </div>
 
-                {/* Grid Layout: 2 columns on laptop, 1 on mobile */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                {/* Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className="group relative h-auto md:aspect-square rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#0c4a6e] via-[#1298EA] to-[#0284c7] border border-blue-400/20 shadow-[0_20px_60px_-15px_rgba(18,152,234,0.4)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_-15px_rgba(18,152,234,0.6)] hover:from-[#075985] hover:via-[#0ea5e9] hover:to-[#0369a1]"
+                            className="group relative rounded-[2.5rem] bg-white border border-slate-200/60 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 overflow-hidden hover:-translate-y-1"
                         >
-                            {/* Grid Background Effect */}
-                            <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:30px_30px] opacity-100" />
+                            {/* Subtle colored glow on hover */}
+                            <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-${service.accentColor}-500`} />
 
-                            <div className="relative h-full p-6 md:p-10 flex flex-col">
-                                {/* Top Row: Title (Left) + Image (Right) */}
-                                <div className="flex flex-row items-center justify-between gap-4 mb-4 md:mb-6">
-                                    {/* Title (Left) */}
-                                    <h2 className="text-white text-lg md:text-2xl font-semibold tracking-tight font-nohemi text-left">
-                                        {service.title}
-                                    </h2>
-
-
-                                    <div className="relative w-28 h-20 md:w-56 md:h-40 flex-shrink-0 rounded-2xl border-2 md:border-4 border-white/90 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700 bg-white">
-                                        <Image
-                                            src={service.image}
-                                            alt={service.title}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 112px, 224px"
-                                        />
-                                    </div>
+                            <div className="relative p-6 md:p-8 flex flex-col h-full">
+                                {/* Image Section - Top & Wide */}
+                                <div className="relative w-full h-48 md:h-56 mb-6 rounded-2xl overflow-hidden shadow-sm border border-slate-100 group-hover:scale-[1.02] transition-transform duration-500 bg-slate-50">
+                                    <Image
+                                        src={service.image}
+                                        alt={service.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 500px"
+                                    />
                                 </div>
 
-                                {/* Content Below (Full Width) */}
-                                <div className="space-y-6">
-                                    {/* Description */}
-                                    <p className="text-blue-50 text-sm md:text-base font-normal leading-relaxed text-left">
-                                        {service.description}
-                                    </p>
+                                {/* Title & Badge */}
+                                <div className="space-y-3 mb-4">
+                                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-${service.accentColor}-50 text-${service.accentColor}-600 text-xs font-bold uppercase tracking-wider w-fit`}>
+                                        <Sparkles className="w-3 h-3" />
+                                        AI Power
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-bold font-nohemi text-slate-900 leading-tight">
+                                        {service.title}
+                                    </h3>
+                                </div>
 
-                                    {/* Capabilities Box */}
-                                    <div className="w-full grid grid-cols-2 gap-x-4 gap-y-3 p-4 md:p-6 rounded-[1.25rem] md:rounded-[1.5rem] bg-white/95 border border-white/30 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-                                        {service.bullets.map((bullet, idx) => (
-                                            <div key={idx} className="flex items-center gap-2.5">
-                                                <div className={`w-1.5 h-1.5 rounded-full ${service.bulletColor} ${service.bulletShadow} flex-shrink-0`} />
-                                                <span className="text-[10px] md:text-xs font-bold text-slate-700 mb-3 mt-3">
-                                                    {bullet}
-                                                </span>
+                                {/* Description */}
+                                <p className="text-slate-600 text-base leading-relaxed mb-8">
+                                    {service.description}
+                                </p>
+
+                                {/* Feature Bullets */}
+                                <div className="space-y-3 mb-8">
+                                    {service.bullets.map((bullet, idx) => (
+                                        <div key={idx} className="flex items-center gap-3">
+                                            <div className={`w-5 h-5 rounded-full bg-${service.accentColor}-50 flex items-center justify-center shrink-0`}>
+                                                <Check className={`w-3 h-3 text-${service.accentColor}-500`} />
                                             </div>
-                                        ))}
-                                    </div>
+                                            <span className="text-sm font-medium text-slate-700">
+                                                {bullet}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
 
-                                    {/* Explore Button */}
-                                    <div className="w-full flex justify-center">
-                                        <button
-                                            className="px-8 py-3 rounded-xl bg-white text-[#1298EA] font-bold text-xs tracking-wide transition-all duration-300 hover:bg-blue-50 hover:shadow-[0_8px_24px_rgba(18,152,234,0.3)] active:scale-95 border border-blue-100"
-                                            onClick={() => window.location.href = service.href}
-                                        >
-                                            Explore
-                                        </button>
-                                    </div>
+                                {/* Bottom Action */}
+                                <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between group/btn">
+                                    <span className={`text-sm font-semibold text-${service.accentColor}-600`}>
+                                        Learn more
+                                    </span>
+                                    <button
+                                        className={`w-10 h-10 rounded-full bg-${service.accentColor}-50 flex items-center justify-center group-hover/btn:bg-${service.accentColor}-500 transition-colors duration-300`}
+                                        onClick={() => window.location.href = service.href}
+                                    >
+                                        <ArrowRight className={`w-5 h-5 text-${service.accentColor}-600 group-hover/btn:text-white transition-colors duration-300`} />
+                                    </button>
                                 </div>
                             </div>
                         </div>

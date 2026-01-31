@@ -71,7 +71,7 @@ export default function PricingFlow({
     ];
 
     return (
-        <div className="w-full">
+        <div className={`w-full ${trigger ? 'flex justify-center' : ''}`}>
             <Dialog
                 open={step !== "idle"}
                 onOpenChange={(open) => {

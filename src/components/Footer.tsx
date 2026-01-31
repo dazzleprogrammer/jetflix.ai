@@ -52,8 +52,30 @@ const Footer = () => {
       </div>
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Top Section - Email & Tagline */}
+        {/* Top Section - Email & Tagline */}
+        {/* Top Section - Email & Tagline */}
         <div className="flex flex-col items-center mb-12 space-y-6">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-2xl border border-blue-100 shadow-sm animate-fade-in">
+          {/* Mobile Layout: Split Left/Right, Minimal Style */}
+          <div className="flex md:hidden items-center justify-between w-full px-2">
+            <a
+              href="mailto:helpdesk@jetflix.ai"
+              className="flex items-center gap-2 text-blue-700 hover:text-blue-900 transition-colors font-semibold p-2"
+            >
+              <Mail className="w-5 h-5" />
+              <span className="text-xs">helpdesk@jetflix.ai</span>
+            </a>
+
+            <a
+              href="tel:+919833219195"
+              className="flex items-center gap-2 text-blue-700 hover:text-blue-900 transition-colors font-semibold p-2"
+            >
+              <Phone className="w-5 h-5" />
+              <span className="text-xs">+91 9833219195</span>
+            </a>
+          </div>
+
+          {/* Desktop Layout: Centered Pill Box */}
+          <div className="hidden md:flex flex-row items-center gap-8 bg-white/50 backdrop-blur-sm px-8 py-3 rounded-2xl border border-blue-100 shadow-sm animate-fade-in">
             <a
               href="mailto:helpdesk@jetflix.ai"
               className="flex items-center gap-2.5 text-blue-700 hover:text-blue-900 transition-all duration-300 font-semibold group"
@@ -61,37 +83,23 @@ const Footer = () => {
               <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
                 <Mail className="w-4 h-4" />
               </div>
-              <span className="text-sm md:text-base">helpdesk@jetflix.ai</span>
+              <span className="text-base">helpdesk@jetflix.ai</span>
             </a>
 
-            <div className="hidden md:block w-px h-6 bg-blue-200/50" />
+            <div className="w-px h-6 bg-blue-300/50" />
 
-            <div className="flex items-center gap-6">
-              <a
-                href="tel:+919833219195"
-                className="flex items-center gap-2.5 text-blue-700 hover:text-blue-900 transition-all duration-300 font-semibold group"
-              >
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <span className="text-sm md:text-base">+91 9833219195</span>
-              </a>
-
-              {/* <a
-                href="https://wa.me/919833219195"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-emerald-600 hover:text-emerald-700 transition-all duration-300 font-semibold group"
-              >
-                <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors">
-                  <MessageSquare className="w-4 h-4" />
-                </div>
-                <span className="text-sm md:text-base">WhatsApp</span>
-              </a> */}
-            </div>
+            <a
+              href="tel:+919833219195"
+              className="flex items-center gap-2.5 text-blue-700 hover:text-blue-900 transition-all duration-300 font-semibold group"
+            >
+              <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                <Phone className="w-4 h-4" />
+              </div>
+              <span className="text-base">+91 9833219195</span>
+            </a>
           </div>
 
-          <p className="text-slate-800 text-xl md:text-2xl font-black tracking-tight font-nohemi drop-shadow-sm text-center">
+          <p className="text-slate-800 text-xl md:text-2xl font-black tracking-tight font-nohemi drop-shadow-sm text-center max-w-2xl mx-auto">
             AI Expert For Your Business <span className="inline-block animate-bounce-slow">🚀</span><span className="inline-block animate-pulse">✨</span>
           </p>
         </div>

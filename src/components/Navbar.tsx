@@ -1,12 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown, Phone, MessageSquare, Users, Video, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 via-blue-500 to-sky-400 backdrop-blur-xl border-b border-white/20 animate-in fade-in slide-in-from-top-4 duration-700">
@@ -42,6 +63,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
+          ref={buttonRef}
           className="md:hidden relative z-[101] p-2 -mr-2 text-white/90 hover:text-white transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -49,7 +71,10 @@ const Navbar = () => {
         </button>
 
         {/* Mobile Menu Dropdown */}
-        <div className={`absolute top-full right-6 w-[280px] mt-4 bg-white/95 backdrop-blur-2xl border border-blue-100 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] md:hidden transition-all duration-300 ease-in-out origin-top-right z-[100] ${isMobileMenuOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'}`}>
+        <div
+          ref={menuRef}
+          className={`absolute top-full right-6 w-[280px] mt-4 bg-white/95 backdrop-blur-2xl border border-blue-100 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] md:hidden transition-all duration-300 ease-in-out origin-top-right z-[100] ${isMobileMenuOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'}`}
+        >
           <div className="p-4 flex flex-col gap-6">
             <div className="space-y-3">
               <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 px-2">AI Solutions</h3>

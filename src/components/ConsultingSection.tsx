@@ -54,14 +54,20 @@ export default function ConsultingSection() {
                                     </p>
                                 </div>
 
-                                <Button
-                                    size="xl"
-                                    className="h-14 px-8 bg-gradient-to-r from-rose-600 to-orange-600 text-white hover:from-rose-500 hover:to-orange-500 rounded-2xl text-lg font-bold shadow-[0_10px_30px_rgba(225,29,72,0.25)] transition-all hover:scale-105 active:scale-95 border-none"
-                                    onClick={() => window.open('https://calendly.com', '_blank')}
+                                <a
+                                    href="https://wa.me/919833219195"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block mt-10"
                                 >
-                                    Book a Strategy Call
-                                    <ArrowRight className="ml-2 w-5 h-5" />
-                                </Button>
+                                    <Button
+                                        size="xl"
+                                        className="h-14 px-8 bg-gradient-to-r from-rose-600 to-orange-600 text-white hover:from-rose-500 hover:to-orange-500 rounded-2xl text-lg font-bold shadow-[0_10px_30px_rgba(225,29,72,0.25)] transition-all hover:scale-105 active:scale-95 border-none"
+                                    >
+                                        Book a Strategy Call
+                                        <ArrowRight className="ml-2 w-5 h-5" />
+                                    </Button>
+                                </a>
                             </div>
 
                             {/* Right Side: Features List */}

@@ -117,15 +117,15 @@ export default function AIHumanClones() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                         <VideoPlayer
                             src="https://cdn.vocallabs.ai/Blogs/47002c64-b27f-4b89-b25c-07f9f0695cc0.mp4"
-                            label="AI Clone Demo 1"
+                            label="Real Human Clone"
                         />
                         <VideoPlayer
                             src="https://cdn.vocallabs.ai/Blogs/b4506c0e-bd88-4728-84c3-c4fef6aeab39.mp4"
-                            label="Founder Clone"
+                            label="Non Existing Human AI"
                         />
                         <VideoPlayer
                             src="https://cdn.vocallabs.ai/Blogs/150dcd19-077f-41ef-8bf7-c6fe9c21b056.mp4"
-                            label="AI Clone Demo 2"
+                            label="Real Human Clone"
                         />
                     </div>
 

@@ -133,7 +133,7 @@ export default function AIProductVideos() {
                         </div>
 
                         {/* Request Pricing Button - Standalone */}
-                        <div className="flex justify-center pt-8">
+                        <div className="w-full flex items-center justify-center pt-10 pb-4">
                             <PricingFlow
                                 serviceName="AI Product Videos"
                                 tiers={[
@@ -143,7 +143,7 @@ export default function AIProductVideos() {
                                     { name: "Scale", price: "Custom", details: "16+ Videos / Month" }
                                 ]}
                                 trigger={
-                                    <Button size="xl" className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-12 h-14 rounded-2xl shadow-2xl shadow-slate-200 group/btn">
+                                    <Button size="xl" className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-lg px-10 h-16 rounded-full shadow-[0_0_0_4px_rgba(59,130,246,0.3)] hover:shadow-[0_0_0_4px_rgba(59,130,246,0.5)] transition-all duration-300 group/btn border border-blue-500/50 mx-auto">
                                         Request Pricing
                                         <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1.5 transition-transform" />
                                     </Button>
