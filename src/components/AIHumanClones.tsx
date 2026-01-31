@@ -82,7 +82,7 @@ export default function AIHumanClones() {
 
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-nohemi leading-[1.1] animate-slide-up">
                             Scale Yourself with{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 animate-gradient-text bg-[length:200%_auto]">
+                            <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 animate-gradient-text bg-[length:200%_auto]">
                                 Digital Twins
                             </span>
                         </h2>

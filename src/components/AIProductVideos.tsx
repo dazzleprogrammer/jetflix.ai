@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import PricingFlow from "./PricingFlow";
 import { Button } from "@/components/ui/button";
@@ -42,10 +43,12 @@ const ShowcaseCard = ({
                             controls={showControls}
                         />
                     ) : (
-                        <img
-                            src={image}
+                        <Image
+                            src={image!}
                             alt={title}
-                            className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                            fill
+                            className="object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                            sizes="(max-width: 768px) 300px, 340px"
                         />
                     )}
                 </div>

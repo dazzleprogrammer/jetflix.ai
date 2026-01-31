@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function ServicesOverview() {
     const services = [
@@ -99,18 +100,20 @@ export default function ServicesOverview() {
 
                             <div className="relative h-full p-6 md:p-10 flex flex-col">
                                 {/* Top Row: Title (Left) + Image (Right) */}
-                                <div className="flex flex-col md:flex-row items-center justify-between gap-1 mb-6">
+                                <div className="flex flex-row items-center justify-between gap-4 mb-4 md:mb-6">
                                     {/* Title (Left) */}
-                                    <h2 className="text-white text-xl md:text-2xl font-semibold tracking-tight font-nohemi text-center md:text-left whitespace-nowrap">
+                                    <h2 className="text-white text-lg md:text-2xl font-semibold tracking-tight font-nohemi text-left">
                                         {service.title}
                                     </h2>
 
-                                    {/* Image (Right) */}
-                                    <div className="relative w-48 h-32 md:w-56 md:h-40 flex-shrink-0 rounded-2xl border-4 border-white/90 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700 bg-white">
-                                        <img
+
+                                    <div className="relative w-28 h-20 md:w-56 md:h-40 flex-shrink-0 rounded-2xl border-2 md:border-4 border-white/90 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700 bg-white">
+                                        <Image
                                             src={service.image}
                                             alt={service.title}
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 112px, 224px"
                                         />
                                     </div>
                                 </div>
@@ -118,7 +121,7 @@ export default function ServicesOverview() {
                                 {/* Content Below (Full Width) */}
                                 <div className="space-y-6">
                                     {/* Description */}
-                                    <p className="text-blue-50 text-sm md:text-base font-normal leading-relaxed text-center md:text-left">
+                                    <p className="text-blue-50 text-sm md:text-base font-normal leading-relaxed text-left">
                                         {service.description}
                                     </p>
 

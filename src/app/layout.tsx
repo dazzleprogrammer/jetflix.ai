@@ -21,8 +21,7 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FloatingIcons from "@/components/FloatingIcons";
-import WhatsAppFAB from "@/components/WhatsAppFAB";
+
 import { SparklesCore } from "@/components/ui/sparkles";
 import { MouseTrace } from "@/components/ui/mouse-trace";
 
@@ -52,13 +51,13 @@ export default function RootLayout({
           <MouseTrace />
           <Navbar />
           <div className="relative flex-1">
-            <FloatingIcons />
+
             <main className="relative z-10">
               {children}
             </main>
           </div>
           <Footer />
-          <WhatsAppFAB />
+
         </Providers>
       </body>
     </html>
