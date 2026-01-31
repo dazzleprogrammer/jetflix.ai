@@ -34,7 +34,7 @@ export default function AIWhatsAppAgents() {
     ];
 
     return (
-        <section id="whatsapp" className="py-16 md:py-24 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
+        <section id="whatsapp" className="py-8 md:py-12 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 opacity-20">
                 {/* Floating WhatsApp Icons */}
@@ -51,7 +51,7 @@ export default function AIWhatsAppAgents() {
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-600 text-sm font-medium animate-fade-in border border-green-200">
                         <MessageSquare className="w-4 h-4" />
                         AI WhatsApp Agents
@@ -60,38 +60,38 @@ export default function AIWhatsAppAgents() {
                         Automate Support on <br />
                         <span className="text-green-600 animate-gradient-text">WhatsApp</span>
                     </h2>
-                    <p className="text-muted-foreground text-base md:text-lg leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
                         Increase conversions with AI agents that reply instantly to text, voice notes, and images.
                         Seamlessly integrated with your CRM.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto items-start">
                     {/* Left: Feature Cards */}
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         {demos.map((demo, idx) => (
                             <div
                                 key={idx}
-                                className="group relative p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-scale-in"
+                                className="group relative p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-scale-in"
                                 style={{ animationDelay: `${idx * 0.1}s` }}
                             >
                                 {/* Gradient Background on Hover */}
                                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${demo.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}></div>
 
                                 <div className="relative flex gap-4">
-                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${demo.gradient} flex items-center justify-center shadow-lg shrink-0 group-hover:scale-110 transition-transform`}>
-                                        <demo.icon className="w-6 h-6 text-white" />
+                                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${demo.gradient} flex items-center justify-center shadow-lg shrink-0 group-hover:scale-110 transition-transform`}>
+                                        <demo.icon className="w-5 h-5 text-white" />
                                     </div>
                                     <div className="flex-1">
-                                        <div className="flex items-start justify-between mb-2">
-                                            <h3 className="font-bold text-lg text-slate-900">{demo.title}</h3>
+                                        <div className="flex items-start justify-between mb-1">
+                                            <h3 className="font-bold text-base text-slate-900">{demo.title}</h3>
                                             {demo.badge && (
                                                 <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold">
                                                     {demo.badge}
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="text-sm text-slate-600 leading-relaxed">{demo.description}</p>
+                                        <p className="text-xs text-slate-600 leading-relaxed">{demo.description}</p>
                                     </div>
                                 </div>
 
@@ -104,8 +104,8 @@ export default function AIWhatsAppAgents() {
                     </div>
 
                     {/* Right: Sticky Pricing Card */}
-                    <div className="md:sticky md:top-24 h-fit">
-                        <div className="p-8 rounded-3xl bg-white border-2 border-green-200 shadow-2xl relative overflow-hidden animate-scale-in" style={{ animationDelay: '0.4s' }}>
+                    <div className="md:sticky md:top-8 h-fit">
+                        <div className="p-6 rounded-3xl bg-white border-2 border-green-200 shadow-2xl relative overflow-hidden animate-scale-in" style={{ animationDelay: '0.4s' }}>
                             {/* Decorative Corner */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/20 to-transparent rounded-bl-full"></div>
 
@@ -116,7 +116,7 @@ export default function AIWhatsAppAgents() {
                                         Most Popular
                                     </div>
                                     <h3 className="text-2xl font-bold text-slate-900">Start Automating Today</h3>
-                                    <p className="text-sm text-slate-600">Fill in your details to get a custom quote based on your message volume.</p>
+                                    <p className="text-xs text-slate-600">Fill in your details to get a custom quote based on your message volume.</p>
                                 </div>
 
                                 <div className="space-y-3">

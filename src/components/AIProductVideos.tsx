@@ -1,7 +1,7 @@
 "use client";
 
-import { Video, ShoppingBag, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
 import PricingFlow from "./PricingFlow";
 import { Button } from "@/components/ui/button";
 
@@ -19,107 +19,89 @@ const ShowcaseCard = ({
     bullets?: string[]
 }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [showControls, setShowControls] = useState(false);
 
     return (
-        <div className="relative group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="aspect-[4/3] bg-slate-950 relative overflow-hidden">
-                {video ? (
-                    <video
-                        ref={videoRef}
-                        src={video}
-                        className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                    />
-                ) : (
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
-                    />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                    <p className="text-white/70 text-[10px] font-bold uppercase tracking-widest mb-1">{category}</p>
-                    <h4 className="text-white font-bold text-xl leading-tight">{title}</h4>
+        <div className="relative group min-w-[300px] md:min-w-[340px] snap-center">
+            {/* Card Container */}
+            <div className="relative p-2 bg-white/20 dark:bg-slate-900/20 backdrop-blur-md rounded-3xl border border-white/20 dark:border-slate-800 shadow-xl transition-all duration-500 hover:shadow-purple-500/10">
+                {/* Video Content */}
+                <div
+                    className="relative overflow-hidden rounded-[1.5rem] bg-slate-950 group/video"
+                    style={{ aspectRatio: '1/1' }}
+                    onMouseEnter={() => setShowControls(true)}
+                    onMouseLeave={() => setShowControls(false)}
+                >
+                    {video ? (
+                        <video
+                            ref={videoRef}
+                            src={video}
+                            className="w-full h-full object-contain bg-black"
+                            loop
+                            playsInline
+                            controls={showControls}
+                        />
+                    ) : (
+                        <img
+                            src={image}
+                            alt={title}
+                            className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                        />
+                    )}
                 </div>
-                <div className="absolute top-4 right-4 p-2 rounded-full bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Video className="w-4 h-4 text-white" />
+
+                {/* Text Content Below */}
+                <div className="mt-6 text-center space-y-2 px-2 pb-2">
+                    <p className="text-white/70 text-[10px] uppercase tracking-widest font-bold bg-slate-900/50 inline-block px-3 py-1 rounded-full">{category}</p>
+                    <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white font-nohemi tracking-tight leading-tight">{title}</h3>
                 </div>
             </div>
 
-            <div className="p-8 space-y-6">
-                {bullets && (
-                    <div className="grid grid-cols-1 gap-3">
-                        {bullets.map((bullet, i) => (
-                            <div key={i} className="flex items-start gap-3">
-                                <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5" />
-                                <span className="text-sm font-semibold text-slate-600">{bullet}</span>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            {/* Bullets Section */}
+            {bullets && (
+                <div className="mt-4 px-4 space-y-2">
+                    {bullets.map((bullet, i) => (
+                        <div key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                            <span>{bullet}</span>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
 
 export default function AIProductVideos() {
-    const videoVolumeOptions = [
-        "4 videos / month",
-        "8 videos / month",
-        "12 videos / month",
-        "16+ videos / month"
-    ];
+
 
     return (
-        <section id="product-videos" className="py-24 bg-[#FAFAFB] relative overflow-hidden">
+        <section id="product-videos" className="py-6 md:py-8 bg-[#FAFAFB] relative overflow-hidden">
             {/* Design Ornaments */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/[0.03] rounded-full blur-[120px] -z-10" />
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/[0.03] rounded-full blur-[100px] -z-10" />
 
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-1">
                 {/* Hero section */}
-                <div className="max-w-4xl mx-auto text-center mb-24 space-y-8">
-                    {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-black uppercase tracking-[0.25em] animate-fade-in shadow-sm">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        Next-Gen Video Production
-                    </div> */}
-                    <h1 className="text-4xl md:text-7xl font-bold font-nohemi text-slate-900 leading-tight">
+                <div className="max-w-4xl mx-auto text-center mb-2 space-y-4">
+                    <h1 className="text-3xl md:text-5xl font-bold font-nohemi text-slate-900 leading-tight">
                         AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Product Videos</span>
                     </h1>
-                    <div className="space-y-4">
-                        <p className="text-lg md:text-2xl text-slate-700 font-medium leading-relaxed">
+                    <div className="space-y-2">
+                        <p className="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
                             Turn product photos, audio, or basic inputs into high-impact marketing videos using AI — no camera, no studio, no human crew.
                         </p>
-                        <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed">
+                        <p className="text-sm text-slate-500 font-medium leading-relaxed">
                             Create glamorous showcase videos in multiple languages.
                         </p>
                     </div>
                 </div>
 
-                <div className="space-y-20">
+                <div className="space-y-10">
                     {/* 🔹 Product Showcase Videos */}
-                    <div className="space-y-12">
-                        {/* <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8">
-                            <div className="space-y-2">
-                                <div className="inline-flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-widest">
-                                    <ShoppingBag className="w-4 h-4" />
-                                    <span>AI Product Showcase</span>
-                                </div>
-                                <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Product Showcase Videos</h3>
-                                <p className="text-slate-500 font-medium">Perfect for E-commerce & Social Media</p>
-                            </div>
-                            <div className="hidden md:flex gap-2 text-xs font-bold text-slate-400">
-                                <span>Instagram</span> • <span>Amazon</span> • <span>Flipkart</span>
-                            </div>
-                        </div> */}
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-
+                    <div className="space-y-8">
+                        {/* Grid Layout - No Slider */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <ShowcaseCard
                                 title="Shoes Brand AI Ad"
                                 category="Sports & Lifestyle"

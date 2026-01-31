@@ -97,46 +97,52 @@ export default function ServicesOverview() {
                             {/* Grid Background Effect */}
                             <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:30px_30px] opacity-100" />
 
-                            <div className="relative h-full p-6 md:p-10 flex flex-col items-center text-center">
-                                {/* Rectangle Image (Top Center) */}
-                                <div className="relative w-48 h-32 md:w-56 md:h-40 rounded-2xl border-4 border-white/90 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700 mb-6 bg-white">
-                                    <img
-                                        src={service.image}
-                                        alt={service.title}
-                                        className="w-full h-full object-cover"
-                                    />
+                            <div className="relative h-full p-6 md:p-10 flex flex-col">
+                                {/* Top Row: Title (Left) + Image (Right) */}
+                                <div className="flex flex-col md:flex-row items-center justify-between gap-1 mb-6">
+                                    {/* Title (Left) */}
+                                    <h2 className="text-white text-xl md:text-2xl font-semibold tracking-tight font-nohemi text-center md:text-left whitespace-nowrap">
+                                        {service.title}
+                                    </h2>
+
+                                    {/* Image (Right) */}
+                                    <div className="relative w-48 h-32 md:w-56 md:h-40 flex-shrink-0 rounded-2xl border-4 border-white/90 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700 bg-white">
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
                                 </div>
 
-                                {/* Title (Center Aligned) */}
-                                <h2 className="text-white text-2xl md:text-3xl font-semibold tracking-tight mb-4 w-full font-nohemi">
-                                    {service.title}
-                                </h2>
+                                {/* Content Below (Full Width) */}
+                                <div className="space-y-6">
+                                    {/* Description */}
+                                    <p className="text-blue-50 text-sm md:text-base font-normal leading-relaxed text-center md:text-left">
+                                        {service.description}
+                                    </p>
 
-                                {/* Description (Center Aligned) */}
-                                <p className="text-blue-50 text-sm md:text-base font-normal leading-relaxed mb-6">
-                                    {service.description}
-                                </p>
+                                    {/* Capabilities Box */}
+                                    <div className="w-full grid grid-cols-2 gap-x-4 gap-y-3 p-4 md:p-6 rounded-[1.25rem] md:rounded-[1.5rem] bg-white/95 border border-white/30 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+                                        {service.bullets.map((bullet, idx) => (
+                                            <div key={idx} className="flex items-center gap-2.5">
+                                                <div className={`w-1.5 h-1.5 rounded-full ${service.bulletColor} ${service.bulletShadow} flex-shrink-0`} />
+                                                <span className="text-[10px] md:text-xs font-bold text-slate-700 mb-3 mt-3">
+                                                    {bullet}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
 
-                                {/* Capabilities Box (Left Aligned content inside) */}
-                                <div className="w-full grid grid-cols-2 gap-x-4 gap-y-3 p-4 md:p-6 rounded-[1.25rem] md:rounded-[1.5rem] bg-white/95 border border-white/30 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] mb-6">
-                                    {service.bullets.map((bullet, idx) => (
-                                        <div key={idx} className="flex items-center gap-2.5">
-                                            <div className={`w-1.5 h-1.5 rounded-full ${service.bulletColor} ${service.bulletShadow}`} />
-                                            <span className="text-[10px] md:text-xs font-bold text-slate-700">
-                                                {bullet}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Explore Button (Center Aligned at bottom) */}
-                                <div className="mt-auto w-full flex justify-center pb-2 md:pb-0">
-                                    <button
-                                        className="px-8 py-3 rounded-xl bg-white text-[#1298EA] font-bold text-xs tracking-wide transition-all duration-300 hover:bg-blue-50 hover:shadow-[0_8px_24px_rgba(18,152,234,0.3)] active:scale-95 border border-blue-100"
-                                        onClick={() => window.location.href = service.href}
-                                    >
-                                        Explore
-                                    </button>
+                                    {/* Explore Button */}
+                                    <div className="w-full flex justify-center">
+                                        <button
+                                            className="px-8 py-3 rounded-xl bg-white text-[#1298EA] font-bold text-xs tracking-wide transition-all duration-300 hover:bg-blue-50 hover:shadow-[0_8px_24px_rgba(18,152,234,0.3)] active:scale-95 border border-blue-100"
+                                            onClick={() => window.location.href = service.href}
+                                        >
+                                            Explore
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

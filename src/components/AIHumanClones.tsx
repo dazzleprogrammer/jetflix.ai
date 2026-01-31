@@ -1,25 +1,14 @@
 "use client";
 
-import { UserCircle2, Users, Wand2, PlayCircle, PauseCircle, Sparkles, MessageSquare } from "lucide-react";
+import { UserCircle2, Users, Wand2, Sparkles, MessageSquare } from "lucide-react";
 import { useRef, useState } from "react";
 import PricingFlow from "./PricingFlow";
 import { Button } from "@/components/ui/button";
 
 // Video Player Component
 function VideoPlayer({ src, label }: { src: string; label: string }) {
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [showControls, setShowControls] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
-
-    const togglePlay = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
 
     return (
         <div className="relative group w-full">
@@ -27,9 +16,10 @@ function VideoPlayer({ src, label }: { src: string; label: string }) {
             <div className="relative p-2 bg-white/20 dark:bg-slate-900/20 backdrop-blur-md rounded-3xl border border-white/20 dark:border-slate-800 shadow-2xl transition-all duration-700 hover:shadow-purple-500/20">
                 {/* Video Content */}
                 <div
-                    className="relative overflow-hidden rounded-[1.5rem] bg-slate-950 cursor-pointer"
-                    onClick={togglePlay}
-                    style={{ aspectRatio: '16/9' }}
+                    className="relative overflow-hidden rounded-[1.5rem] bg-slate-950 group/video"
+                    style={{ aspectRatio: '1/1' }}
+                    onMouseEnter={() => setShowControls(true)}
+                    onMouseLeave={() => setShowControls(false)}
                 >
                     <video
                         ref={videoRef}
@@ -37,27 +27,13 @@ function VideoPlayer({ src, label }: { src: string; label: string }) {
                         className="w-full h-full object-contain bg-black"
                         loop
                         playsInline
-                        controls={false}
+                        controls={showControls}
                     />
 
-                    {/* Minimal Overlay */}
-                    <div className={`absolute inset-0 bg-black/40 flex items-center justify-center z-20 transition-opacity duration-300 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-                        <div className="p-4 rounded-full bg-white/10 backdrop-blur-2xl border border-white/20 shadow-glow group-hover:scale-110 transition-transform">
-                            {isPlaying ? (
-                                <PauseCircle className="w-12 h-12 text-white" />
-                            ) : (
-                                <PlayCircle className="w-12 h-12 text-white" />
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Bottom Fade */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
-
-                    {/* Label */}
-                    <div className="absolute bottom-4 left-6 z-20">
-                        <h3 className="text-xl font-bold text-white tracking-tight">{label}</h3>
-                    </div>
+                </div>
+                {/* Label Below Video */}
+                <div className="mt-6 text-center">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 font-nohemi tracking-tight">{label}</h3>
                 </div>
             </div>
         </div>
@@ -88,23 +64,23 @@ export default function AIHumanClones() {
     ];
 
     return (
-        <section id="human-clones" className="pb-20 md:pb-30 bg-background relative overflow-hidden">
+        <section id="human-clones" className="py-8 md:py-12 bg-background relative overflow-hidden">
             {/* Background Decorative Elements */}
             <div className="absolute top-1/4 -left-20 w-80 h-80 bg-purple-500/5 blur-[120px] rounded-full -z-10 animate-pulse-slow" />
             <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-pink-500/5 blur-[120px] rounded-full -z-10 animate-pulse-slow" style={{ animationDelay: '2s' }} />
 
             <div className="container mx-auto px-4 md:px-6 max-w-7xl">
                 {/* Centered Single Column Layout */}
-                <div className="space-y-10">
+                <div className="space-y-6">
 
                     {/* Row 1: Heading - Centered */}
-                    <div className="text-center space-y-6">
+                    <div className="text-center space-y-4">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-600 text-sm font-medium animate-fade-in shadow-sm">
                             <Users className="w-4 h-4" />
                             <span>AI Human Clones</span>
                         </div>
 
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-nohemi leading-[1.1] animate-slide-up">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-nohemi leading-[1.1] animate-slide-up">
                             Scale Yourself with{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 animate-gradient-text bg-[length:200%_auto]">
                                 Digital Twins
@@ -114,7 +90,7 @@ export default function AIHumanClones() {
 
                     {/* Row 2: Description - Centered */}
                     <div className="text-center max-w-3xl mx-auto">
-                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
                             Create a digital AI twin of yourself or an unreal persona that speaks in your voice.
                             Perfect for marketing videos, training content, and 24/7 customer support.
                         </p>
@@ -124,21 +100,21 @@ export default function AIHumanClones() {
                     <div className="grid sm:grid-cols-2 gap-1 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
                         {features.map((item, idx) => (
                             <div key={idx} className="group p-1 rounded-2xl bg-gradient-to-br from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-900 hover:from-purple-500 hover:to-pink-500 transition-all duration-500">
-                                <div className="bg-white dark:bg-slate-950 rounded-[14px] p-5 flex items-center gap-4 h-full">
-                                    <div className={`p-3 rounded-xl ${item.bgColor} group-hover:scale-110 transition-transform duration-500`}>
+                                <div className="bg-white dark:bg-slate-950 rounded-[14px] p-4 flex items-center gap-4 h-full">
+                                    <div className={`p-2.5 rounded-xl ${item.bgColor} group-hover:scale-110 transition-transform duration-500`}>
                                         {item.icon}
                                     </div>
                                     <div>
-                                        <div className="font-bold text-lg">{item.title}</div>
-                                        <div className="text-sm text-muted-foreground">{item.desc}</div>
+                                        <div className="font-bold text-base">{item.title}</div>
+                                        <div className="text-xs text-muted-foreground">{item.desc}</div>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    {/* Row 4: All Three Videos - Big Frames */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                    {/* Row 4: All Three Videos - Horizontal Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                         <VideoPlayer
                             src="https://cdn.vocallabs.ai/Blogs/47002c64-b27f-4b89-b25c-07f9f0695cc0.mp4"
                             label="AI Clone Demo 1"

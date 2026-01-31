@@ -23,6 +23,7 @@ interface PricingFlowProps {
     // Keeping these for backward compatibility
     volumeLabel?: string;
     volumeOptions?: string[];
+    showVoiceType?: boolean;
 }
 
 type Step = "idle" | "form" | "brochure" | "interested";
