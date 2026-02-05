@@ -23,17 +23,13 @@ const AudioVisualizer = ({ isPlaying }: { isPlaying: boolean }) => {
 };
 
 const AudioPlayer = ({
-    title,
-    useCase,
-    voiceType,
-    language,
+    line1,
+    line2,
     audioSrc,
     duration = "0:15"
 }: {
-    title: string;
-    useCase: string;
-    voiceType: string;
-    language: string;
+    line1: string;
+    line2: string;
     audioSrc: string;
     duration?: string
 }) => {
@@ -107,13 +103,13 @@ const AudioPlayer = ({
             <div className="flex-1 relative z-10 min-w-0">
                 <div className="flex justify-between items-start gap-4">
                     <div className="min-w-0">
-                        <p className="font-heading font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-base truncate">{title}</p>
-                        <div className="flex flex-wrap gap-x-2 gap-y-1 mt-1 text-xs text-slate-500 font-medium tracking-wide uppercase">
-                            <span className="shrink-0">{useCase}</span>
-                            <span className="text-slate-300">•</span>
-                            <span className="shrink-0">{voiceType}</span>
-                            <span className="text-slate-300">•</span>
-                            <span className="shrink-0">{language}</span>
+                        <div className="space-y-0.5 min-w-0">
+                            <p className="font-heading font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-base truncate">
+                                {line1}
+                            </p>
+                            <p className="text-xs text-slate-500 font-medium tracking-wide">
+                                {line2}
+                            </p>
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-1 shrink-0">
@@ -216,32 +212,54 @@ export default function AIPhoneAgents() {
                                 <div className="h-px bg-slate-200 flex-1" />
                             </div>
 
-                            <div className="grid gap-3 perspective-[1000px]">
-                                <AudioPlayer
-                                    title="Car Service Reminder"
-                                    useCase="Service Reminder"
-                                    voiceType="Female - Professional"
-                                    language="English/Hindi"
-                                    duration="01:40"
-                                    audioSrc="https://cdn.vocallabs.ai/Voices/f896ca5e-5ad9-4cf3-ac97-50e99ab95f03.mp4"
-                                />
-                                <AudioPlayer
-                                    title="Hospital Appointment"
-                                    useCase="Lead Qualification"
-                                    voiceType="Male - Authoritative"
-                                    language="English"
-                                    duration="01:40"
-                                    audioSrc="https://cdn.vocallabs.ai/Blogs/2500ee6d-e682-498b-a95c-552b71b52ea5.mp4"
-                                />
-                                <AudioPlayer
-                                    title="Roadside Assistance"
-                                    useCase="Collections"
-                                    voiceType="Female - Polite"
-                                    language="Hindi"
-                                    duration="02:08"
-                                    audioSrc="https://cdn.vocallabs.ai/Blogs/18c9df65-b28b-4ea1-a979-3d819b85e21d.mp4"
-                                />
-                            </div>
+                            <AudioPlayer
+                                line1="Female - Saavi"
+                                line2="English (India) - Polite"
+                                duration="01:12"
+                                audioSrc="https://cdn.vocallabs.ai/Voices/557eb319-ef61-4326-b571-c28c748765f0.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Female - Neha"
+                                line2="English (India) - Casual"
+                                duration="00:52"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/4c5f8b60-887ef-48b3-b5e6-3c232e58b347.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Male - Eric"
+                                line2="English - Smooth Trustworthy"
+                                duration="01:15"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/81a236f1-6f26-422e-9c59-86b71b9bfb95.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Male - Lucan Rook"
+                                line2="English - Energetic"
+                                duration="00:48"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/9e353f03-a807-4c96-baf9-207bfbb85c81.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Female - Madsri"
+                                line2="Hindi - Warm Friendly"
+                                duration="00:45"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/af8c62bb-3761-4ce0-aafd-0b17bf4d7d8f.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Female - Neha"
+                                line2="Hindi - Casual"
+                                duration="00:58"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/85fc2d19-578c-4e5c-904b-bea9b6e7e24e.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Female - Saavi"
+                                line2="Hindi - Polite"
+                                duration="01:05"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/d90aef3e-6880-4a37-be7d-e79df85bd04f.mpga"
+                            />
+                            <AudioPlayer
+                                line1="Female - Madsri"
+                                line2="Tamil - Warm Friendly"
+                                duration="01:20"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/19d909cd-092a-4ad3-a6ed-0c72d3188ed1.mpga"
+                            />
                         </div>
                     </div>
 

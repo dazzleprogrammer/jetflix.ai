@@ -48,7 +48,7 @@ const Navbar = () => {
             { href: "/whatsapp-agents", label: "AI Whatsapp Agents" },
             { href: "/human-clones", label: "AI Human Clones" },
             { href: "/product-videos", label: "AI Product Videos" },
-            { href: "/#consulting", label: "AI Consulting Services" },
+            { href: "/consulting", label: "AI Consulting Services" },
           ].map((link) => (
             <Link
               key={link.label}
@@ -84,7 +84,7 @@ const Navbar = () => {
                   { href: "/whatsapp-agents", icon: MessageSquare, label: "AI Whatsapp Agents", color: "text-emerald-600", bg: "bg-emerald-50" },
                   { href: "/human-clones", icon: Users, label: "AI Human Clones", color: "text-purple-600", bg: "bg-purple-50" },
                   { href: "/product-videos", icon: Video, label: "AI Product Videos", color: "text-pink-600", bg: "bg-pink-50" },
-                  { href: "/#consulting", icon: Brain, label: "AI Consulting Services", color: "text-rose-600", bg: "bg-rose-50" },
+                  { href: "/consulting", icon: Brain, label: "AI Consulting Services", color: "text-rose-600", bg: "bg-rose-50" },
                 ].map((item) => (
                   <Link
                     key={item.label}

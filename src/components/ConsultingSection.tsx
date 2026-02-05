@@ -36,7 +36,10 @@ export default function ConsultingSection() {
             <div className="container mx-auto px-6">
                 <div className="max-w-6xl mx-auto relative">
                     {/* Main Orangish-Pinkish Glass Card */}
-                    <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-rose-50/40 via-orange-50/40 to-pink-50/40 backdrop-blur-3xl px-8 py-12 md:p-16 lg:p-20 shadow-2xl border border-rose-200/50">
+                    <div
+                        className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-rose-50/40 via-orange-50/40 to-pink-50/40 backdrop-blur-3xl px-8 py-12 md:p-16 lg:p-20 shadow-2xl border border-rose-200/50 cursor-pointer group/card hover:shadow-rose-500/10 transition-all duration-500"
+                        onClick={() => window.location.href = '/consulting'}
+                    >
                         {/* Background Effects */}
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-400/10 blur-[120px] -mr-48 -mt-48 rounded-full" />
                         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-400/10 blur-[120px] -ml-48 -mb-48 rounded-full" />
@@ -45,7 +48,7 @@ export default function ConsultingSection() {
                             {/* Left Side: Text Content */}
                             <div className="space-y-8">
                                 <div className="space-y-4">
-                                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight font-nohemi">
+                                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight font-nohemi group-hover/card:text-rose-700 transition-colors">
                                         AI Consulting <br />
                                         <span className="bg-gradient-to-r from-rose-600 to-orange-600 bg-clip-text text-transparent">Services</span>
                                     </h2>
@@ -54,20 +57,19 @@ export default function ConsultingSection() {
                                     </p>
                                 </div>
 
-                                <a
-                                    href="https://wa.me/919833219195"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block mt-10"
-                                >
+                                <div className="block mt-10">
                                     <Button
                                         size="xl"
                                         className="h-14 px-8 bg-gradient-to-r from-rose-600 to-orange-600 text-white hover:from-rose-500 hover:to-orange-500 rounded-2xl text-lg font-bold shadow-[0_10px_30px_rgba(225,29,72,0.25)] transition-all hover:scale-105 active:scale-95 border-none"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            window.open('https://wa.me/919833219195', '_blank');
+                                        }}
                                     >
                                         Book a Strategy Call
                                         <ArrowRight className="ml-2 w-5 h-5" />
                                     </Button>
-                                </a>
+                                </div>
                             </div>
 
                             {/* Right Side: Features List */}
@@ -75,7 +77,7 @@ export default function ConsultingSection() {
                                 {categories.map((item, i) => (
                                     <div
                                         key={i}
-                                        className="group p-5 rounded-2xl bg-white/60 border border-white/80 hover:bg-white/90 hover:border-rose-400/50 hover:shadow-[0_10px_30px_rgba(225,29,72,0.1)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-6 cursor-default backdrop-blur-sm"
+                                        className="group p-5 rounded-2xl bg-white/60 border border-white/80 hover:bg-white/90 hover:border-rose-400/50 hover:shadow-[0_10px_30px_rgba(225,29,72,0.1)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-6 cursor-pointer backdrop-blur-sm"
                                     >
                                         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-rose-50/80 to-orange-50/80 flex items-center justify-center shrink-0 border border-rose-100 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-sm`}>
                                             <item.icon className="w-6 h-6 text-rose-600" />

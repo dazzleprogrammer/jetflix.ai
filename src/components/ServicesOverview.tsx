@@ -130,9 +130,7 @@ export default function ServicesOverview() {
                                     <span className={`text-sm font-semibold text-${service.accentColor}-600`}>
                                         Learn more
                                     </span>
-                                    <div
-                                        className={`w-10 h-10 rounded-full bg-${service.accentColor}-50 flex items-center justify-center group-hover/btn:bg-${service.accentColor}-500 transition-colors duration-300`}
-                                    >
+                                    <div className={`w-10 h-10 rounded-full bg-${service.accentColor}-50 flex items-center justify-center group-hover/btn:bg-${service.accentColor}-500 transition-colors duration-300`}>
                                         <ArrowRight className={`w-5 h-5 text-${service.accentColor}-600 group-hover/btn:text-white transition-colors duration-300`} />
                                     </div>
                                 </div>

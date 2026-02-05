@@ -67,13 +67,13 @@ export const MouseTrace = () => {
             }
         }
 
-        const handleMouseMove = (e: MouseEvent) => {
-            for (let i = 0; i < 4; i++) { // More particles
+        const handleClick = (e: MouseEvent) => {
+            for (let i = 0; i < 8; i++) { // More particles on click
                 particles.push(new Particle(e.clientX, e.clientY));
             }
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("click", handleClick);
 
         const animate = () => {
             if (!ctx) return;
@@ -96,7 +96,7 @@ export const MouseTrace = () => {
 
         return () => {
             window.removeEventListener("resize", handleResize);
-            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("click", handleClick);
         };
     }, []);
 
