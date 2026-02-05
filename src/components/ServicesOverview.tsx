@@ -77,7 +77,8 @@ export default function ServicesOverview() {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className="group relative rounded-[2.5rem] bg-white border border-slate-200/60 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 overflow-hidden hover:-translate-y-1"
+                            className="group relative rounded-[2.5rem] bg-white border border-slate-200/60 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 overflow-hidden hover:-translate-y-1 cursor-pointer"
+                            onClick={() => window.location.href = service.href}
                         >
                             {/* Subtle colored glow on hover */}
                             <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-${service.accentColor}-500`} />
@@ -129,12 +130,11 @@ export default function ServicesOverview() {
                                     <span className={`text-sm font-semibold text-${service.accentColor}-600`}>
                                         Learn more
                                     </span>
-                                    <button
+                                    <div
                                         className={`w-10 h-10 rounded-full bg-${service.accentColor}-50 flex items-center justify-center group-hover/btn:bg-${service.accentColor}-500 transition-colors duration-300`}
-                                        onClick={() => window.location.href = service.href}
                                     >
                                         <ArrowRight className={`w-5 h-5 text-${service.accentColor}-600 group-hover/btn:text-white transition-colors duration-300`} />
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
