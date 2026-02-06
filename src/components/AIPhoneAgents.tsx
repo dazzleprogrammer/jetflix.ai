@@ -215,49 +215,49 @@ export default function AIPhoneAgents() {
                             <AudioPlayer
                                 line1="Female - Saavi"
                                 line2="English (India) - Polite"
-                                duration="01:12"
+                                duration="00:08"
                                 audioSrc="https://cdn.vocallabs.ai/Voices/557eb319-ef61-4326-b571-c28c748765f0.mpga"
                             />
                             <AudioPlayer
                                 line1="Female - Neha"
                                 line2="English (India) - Casual"
-                                duration="00:52"
-                                audioSrc="https://cdn.vocallabs.ai/Blogs/4c5f8b60-887ef-48b3-b5e6-3c232e58b347.mpga"
+                                duration="00:08"
+                                audioSrc="https://cdn.vocallabs.ai/Blogs/01d4d6e0-0965-41c8-b2f7-3715d2d4d1d6.mpga"
                             />
                             <AudioPlayer
                                 line1="Male - Eric"
                                 line2="English - Smooth Trustworthy"
-                                duration="01:15"
+                                duration="00:08"
                                 audioSrc="https://cdn.vocallabs.ai/Blogs/81a236f1-6f26-422e-9c59-86b71b9bfb95.mpga"
                             />
                             <AudioPlayer
                                 line1="Male - Lucan Rook"
                                 line2="English - Energetic"
-                                duration="00:48"
+                                duration="00:08"
                                 audioSrc="https://cdn.vocallabs.ai/Blogs/9e353f03-a807-4c96-baf9-207bfbb85c81.mpga"
                             />
                             <AudioPlayer
                                 line1="Female - Madsri"
                                 line2="Hindi - Warm Friendly"
-                                duration="00:45"
+                                duration="00:13"
                                 audioSrc="https://cdn.vocallabs.ai/Blogs/af8c62bb-3761-4ce0-aafd-0b17bf4d7d8f.mpga"
                             />
                             <AudioPlayer
                                 line1="Female - Neha"
                                 line2="Hindi - Casual"
-                                duration="00:58"
+                                duration="00:13"
                                 audioSrc="https://cdn.vocallabs.ai/Blogs/85fc2d19-578c-4e5c-904b-bea9b6e7e24e.mpga"
                             />
                             <AudioPlayer
                                 line1="Female - Saavi"
                                 line2="Hindi - Polite"
-                                duration="01:05"
+                                duration="00:13"
                                 audioSrc="https://cdn.vocallabs.ai/Blogs/d90aef3e-6880-4a37-be7d-e79df85bd04f.mpga"
                             />
                             <AudioPlayer
                                 line1="Female - Madsri"
                                 line2="Tamil - Warm Friendly"
-                                duration="01:20"
+                                duration="00:13"
                                 audioSrc="https://cdn.vocallabs.ai/Blogs/19d909cd-092a-4ad3-a6ed-0c72d3188ed1.mpga"
                             />
                         </div>
